@@ -1,0 +1,49 @@
+### hello
+GET http://localhost:8090/kotlin-demo/hello
+Accept: application/json
+
+### sayHello
+GET http://localhost:8090/kotlin-demo/sayHello?name=winterfell
+Accept: application/json
+
+### sayHelloByUser
+POST http://localhost:8090/kotlin-demo/sayHelloByUser
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "zhuzhenjie"
+}
+
+### sayHelloByUser
+POST http://localhost:8090/kotlin-demo/sayHelloByUser
+Content-Type: application/json
+Accept: application/json
+
+{
+  "id": 1021111,
+  "name": "zhenjiezhu",
+  "grade": 96.5
+}
+
+
+### sayHelloByUser
+POST http://localhost:8090/kotlin-demo/copyUser
+Content-Type: application/json
+Accept: application/json
+
+{
+  "id": 1021111,
+  "name": "zhenjiezhu",
+  "grade": 96.5
+}
+
+### sayHelloByUser
+POST http://localhost:8090/kotlin-demo/copyUser
+Content-Type: application/json
+Accept: application/json
+
+{
+  "id": 123,
+  "grade": 96.5
+}

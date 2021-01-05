@@ -1,4 +1,4 @@
-package demo
+package study0
 
 /**
  * 集合

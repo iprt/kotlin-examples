@@ -2,34 +2,54 @@ plugins {
     id 'org.springframework.boot' version '2.4.1'
     id 'io.spring.dependency-management' version '1.0.10.RELEASE'
     id "org.jetbrains.kotlin.jvm" version "1.4.21"
+    id "org.jetbrains.kotlin.plugin.spring" version "1.4.21"
     id 'java'
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
 }
 
 group = 'org.example'
 version = '1.0.0-SNAPSHOT'
 sourceCompatibility = '1.8'
 
+compileKotlin {
+    kotlinOptions {
+        freeCompilerArgs = ["-Xjsr305=strict"]
+        jvmTarget = "1.8"
+    }
+}
+compileTestKotlin {
+    kotlinOptions {
+        freeCompilerArgs = ["-Xjsr305=strict"]
+        jvmTarget = "1.8"
+    }
+}
+
 configurations {
     compileOnly {
         extendsFrom annotationProcessor
     }
 }
-
-sourceSets {
-    main.kotlin.srcDirs += 'src/main/kotlin'
-    main.java.srcDirs += 'src/main/java'
-}
-
-repositories {
-    mavenCentral()
-}
-
+//sourceSets {
+//    main.kotlin.srcDirs += 'src/main/kotlin'
+//}
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
+
+    // kotlin需要的内容
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+    implementation("org.jetbrains.kotlin:kotlin-reflect")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+
+    implementation 'org.apache.commons:commons-lang3:3.9'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
+
 
 test {
     useJUnitPlatform()

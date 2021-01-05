@@ -1,4 +1,4 @@
-package demo
+package study0
 
 /**
  * 创建基本类以及实例
