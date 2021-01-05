@@ -1,4 +1,4 @@
-package study0
+package org.example.test.other.study0
 
 /**
  * 创建基本类以及实例

@@ -1,4 +1,4 @@
-package study1
+package org.example.test.other.study1
 
 /**
  * 类与继承

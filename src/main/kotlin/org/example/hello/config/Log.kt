@@ -7,6 +7,8 @@ import org.slf4j.LoggerFactory
  * @author zhuzhenjie
  * @since 2021/1/5
  */
-abstract class Log {
-    val log: Logger = LoggerFactory.getLogger(this.javaClass)
-}
+//abstract class Log {
+//    val log: Logger = LoggerFactory.getLogger(this.javaClass)
+//}
+
+fun getLogger(forClass: Class<*>): Logger = LoggerFactory.getLogger(forClass)

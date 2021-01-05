@@ -47,3 +47,56 @@ Accept: application/json
   "id": 123,
   "grade": 96.5
 }
+
+
+### 测试 HttpServletRequest
+GET http://localhost:8090/kotlin-demo/testHttpServletRequest
+Accept: application/json
+
+### curl 测试
+
+### 获取学生列表
+GET http://localhost:8090/kotlin-demo/student/list
+Accept: application/json
+
+### 获取学生列表2
+GET http://localhost:8090/kotlin-demo/student/list2
+Accept: application/json
+
+### 根据 id 获取学生
+GET http://localhost:8090/kotlin-demo/student/getById?id=1
+Accept: application/json
+
+### 根据 name 获取学生
+POST http://localhost:8090/kotlin-demo/student/getByName
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "hello"
+}
+
+### 根据 name 获取学生
+POST http://localhost:8090/kotlin-demo/student/getByName
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "IntelliJ"
+}
+
+### 根据 name 获取学生
+POST http://localhost:8090/kotlin-demo/student/getByName
+Content-Type: application/json
+Accept: application/json
+
+{}
+
+### 添加学生
+POST http://localhost:8090/kotlin-demo/student/add
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Kobe Bryant"
+}
