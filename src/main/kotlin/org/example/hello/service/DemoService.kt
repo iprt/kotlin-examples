@@ -1,5 +1,7 @@
 package org.example.hello.service
 
+import com.baomidou.mybatisplus.core.metadata.IPage
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page
 import org.example.hello.entities.po.Student
 
 /**
@@ -18,6 +20,11 @@ interface DemoService {
     fun listStudents2(): MutableList<Student>?
 
     /**
+     * 分页查询
+     */
+    fun pageListStudents(page: Page<*>): IPage<Student>?
+
+    /**
      * 根据 id 获取学生
      */
     fun getStudentById(id: Long): Student?
@@ -31,4 +38,5 @@ interface DemoService {
      * 新增学生
      */
     fun addStudent(student: Student): Boolean
+
 }

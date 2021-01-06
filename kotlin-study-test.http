@@ -63,6 +63,17 @@ Accept: application/json
 GET http://localhost:8090/kotlin-demo/student/list2
 Accept: application/json
 
+### 分页查询学生列表
+POST http://localhost:8090/kotlin-demo/student/pageList
+Content-Type: application/json
+Accept: application/json
+
+{
+  "current": 2,
+  "size": 5
+}
+
+
 ### 根据 id 获取学生
 GET http://localhost:8090/kotlin-demo/student/getById?id=1
 Accept: application/json
@@ -98,5 +109,5 @@ Content-Type: application/json
 Accept: application/json
 
 {
-  "name": "Kobe Bryant"
+  "name": "{{$uuid}}"
 }

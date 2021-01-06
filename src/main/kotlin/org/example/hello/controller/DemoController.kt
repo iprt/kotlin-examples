@@ -1,5 +1,7 @@
 package org.example.hello.controller
 
+import com.baomidou.mybatisplus.core.metadata.IPage
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page
 import org.example.hello.config.getLogger
 import org.example.hello.entities.po.Student
 import org.example.hello.entities.po.User
@@ -22,7 +24,7 @@ import javax.servlet.http.HttpServletRequest
 class DemoController(
         val demoService: DemoService,
 ) : CommandLineRunner {
-    private val log: Logger = getLogger(DemoController::class.java)
+    private val log: Logger = getLogger(this::class.java)
 
     /*
     companion object : Log() {}
@@ -67,6 +69,15 @@ class DemoController(
     @GetMapping("/student/list2")
     fun listStudents2(): MutableList<Student>? {
         return demoService.listStudents2()
+    }
+
+    /**
+     * 分页展示学生信息
+     */
+    @PostMapping("/student/pageList")
+    fun pageListStudents(@RequestBody page: Page<*>): IPage<Student>? {
+        log.info("page info ===> current = ${page.current} ,size = ${page.size}")
+        return demoService.pageListStudents(page)
     }
 
     @GetMapping("/student/getById")

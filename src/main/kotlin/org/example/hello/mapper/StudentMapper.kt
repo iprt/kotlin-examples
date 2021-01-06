@@ -1,6 +1,8 @@
 package org.example.hello.mapper
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper
+import com.baomidou.mybatisplus.core.metadata.IPage
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page
 import org.apache.ibatis.annotations.Mapper
 import org.example.hello.entities.po.Student
 import org.springframework.stereotype.Repository
@@ -11,4 +13,10 @@ import org.springframework.stereotype.Repository
  */
 @Repository
 @Mapper
-interface StudentMapper : BaseMapper<Student>
+interface StudentMapper : BaseMapper<Student> {
+
+    /**
+     * 分页展示学生信息
+     */
+    fun pageListStudents(page: Page<*>): IPage<Student>?
+}
