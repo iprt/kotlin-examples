@@ -104,11 +104,8 @@ class DemoController(
         )
         // 返回产生一个user的函数
         return fun(name: String): User {
-            if (user.name == null) {
-                userOther.name = name
-            } else {
-                userOther.name = user.name
-            }
+//            userOther.name = if (user.name == null) name else user.name
+            userOther.name = user.name ?: name
             return userOther
         }
     }
