@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice
  */
 @RestControllerAdvice
 class ControllerExceptionHandler {
-    private val log = getLogger(ControllerExceptionHandler::class.java)
+    private val log = getLogger(this::class.java)
 
     @ExceptionHandler(Exception::class)
     fun handleException(exception: Exception): String? {
