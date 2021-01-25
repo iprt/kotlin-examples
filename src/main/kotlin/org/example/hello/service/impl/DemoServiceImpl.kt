@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.extension.kotlin.KtQueryWrapper
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page
 import org.example.hello.config.getLogger
 import org.example.hello.entities.po.Student
+import org.example.hello.entities.po.StudentCopy
+import org.example.hello.mapper.StudentCopyMapper
 import org.example.hello.mapper.StudentMapper
 import org.example.hello.service.DemoService
 import org.springframework.stereotype.Service
@@ -17,7 +19,8 @@ import org.springframework.stereotype.Service
  */
 @Service
 class DemoServiceImpl(
-        val studentMapper: StudentMapper,
+    val studentMapper: StudentMapper,
+    val studentCopyMapper: StudentCopyMapper
 ) : DemoService {
     private var log = getLogger(this::class.java)
 
@@ -25,10 +28,14 @@ class DemoServiceImpl(
         return studentMapper.selectList(null)
     }
 
+    override fun listStudentCopys(): MutableList<StudentCopy>? {
+        return studentCopyMapper.selectList(null)
+    }
+
     override fun listStudents2(): MutableList<Student>? {
         return studentMapper.selectList(
-                KtQueryWrapper(Student::class.java)
-                        .gt(Student::id, 1)
+            KtQueryWrapper(Student::class.java)
+                .gt(Student::id, 1)
         )
     }
 
@@ -41,10 +48,14 @@ class DemoServiceImpl(
         return studentMapper.selectById(id)
     }
 
+    override fun getStudentCopyById(id: Long): StudentCopy? {
+        return studentCopyMapper.selectById(id)
+    }
+
     override fun getStudentByName(name: String): Student? {
         return studentMapper.selectList(
-                KtQueryWrapper(Student::class.java)
-                        .eq(Student::name, name)
+            KtQueryWrapper(Student::class.java)
+                .eq(Student::name, name)
         ).firstOrNull()
     }
 

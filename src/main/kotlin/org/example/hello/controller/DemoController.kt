@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page
 import org.example.hello.config.getLogger
 import org.example.hello.entities.po.Student
+import org.example.hello.entities.po.StudentCopy
 import org.example.hello.entities.po.User
 import org.example.hello.service.DemoService
 import org.slf4j.Logger
@@ -22,7 +23,7 @@ import javax.servlet.http.HttpServletRequest
 @RequestMapping("/kotlin-demo")
 @Validated
 class DemoController(
-        val demoService: DemoService,
+    val demoService: DemoService,
 ) : CommandLineRunner {
     private val log: Logger = getLogger(this::class.java)
 
@@ -66,6 +67,11 @@ class DemoController(
         return demoService.listStudents()
     }
 
+    @GetMapping("/student-copy/list")
+    fun listStudentCopys(): MutableList<StudentCopy>? {
+        return demoService.listStudentCopys()
+    }
+
     @GetMapping("/student/list2")
     fun listStudents2(): MutableList<Student>? {
         return demoService.listStudents2()
@@ -85,6 +91,11 @@ class DemoController(
         return demoService.getStudentById(id)
     }
 
+    @GetMapping("/student-copy/getById")
+    fun getStudentCopyById(@RequestParam(value = "id", required = true) id: Long): StudentCopy? {
+        return demoService.getStudentCopyById(id)
+    }
+
     @PostMapping("/student/getByName")
     fun getStudentByName(@RequestBody @Validated(Student.Get::class) student: Student): Student? {
         // let 在一个对象执行代码块
@@ -99,8 +110,8 @@ class DemoController(
     // 返回一个函数 函数式编程初入
     fun copy(user: User): (String) -> User {
         val userOther = User(
-                id = user.id ?: 123 + 3306,
-                grade = user.grade ?: 100.0 + 99
+            id = user.id ?: 123 + 3306,
+            grade = user.grade ?: 100.0 + 99
         )
         // 返回产生一个user的函数
         return fun(name: String): User {

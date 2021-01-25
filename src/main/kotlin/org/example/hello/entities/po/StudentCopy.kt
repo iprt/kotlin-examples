@@ -10,12 +10,12 @@ import com.fasterxml.jackson.databind.ser.std.ToStringSerializer
 import javax.validation.constraints.NotBlank
 
 /**
- * @author winterfell
- * @since 2021/1/6
+ * @author zhuzhenjie
+ * @since 2021/1/25
  */
 @TableName(value = "student", autoResultMap = true)
-data class Student(
-    @field:TableId(value = "id", type = IdType.ASSIGN_ID)
+data class StudentCopy(
+    @TableId(value = "id", type = IdType.ASSIGN_ID)
     @get:JsonSerialize(using = ToStringSerializer::class)
     var id: Long? = null,
 
@@ -24,7 +24,7 @@ data class Student(
     var name: String? = null,
 
     @field:TableField(value = "info", typeHandler = FastjsonTypeHandler::class)
-    var info: ParentInfo? = null
+    var info: Address? = null
 ) {
     /**
      * 验证分组
@@ -34,18 +34,7 @@ data class Student(
     interface Get
 }
 
-data class ParentInfo(
-    var mother: String? = null,
-    var father: String? = null
+data class Address(
+    var lgtd: Double? = 0.0,
+    var lttd: Double? = 0.0
 )
-
-//@TableName("student")
-//class Student {
-//
-//    @TableId("id")
-//    var id: Long? = null
-//
-//    @TableField("name")
-//    var name: String? = null
-//
-//}
