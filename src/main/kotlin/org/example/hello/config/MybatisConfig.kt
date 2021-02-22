@@ -15,8 +15,8 @@ class MybatisConfig {
 
     @Bean
     fun mybatisPlusInterceptor(): MybatisPlusInterceptor {
-        val mybatisPlusInterceptor = MybatisPlusInterceptor()
-        mybatisPlusInterceptor.addInnerInterceptor(PaginationInnerInterceptor(DbType.MYSQL))
-        return mybatisPlusInterceptor
+        return MybatisPlusInterceptor().apply {
+            this.addInnerInterceptor(PaginationInnerInterceptor(DbType.MYSQL))
+        }
     }
 }
