@@ -12,6 +12,17 @@ spring:
     url: ENC(8ncmbrvkGjA5kuezMWNnJdLLmILM2ypTbV6q9i8CQT2mG5kYkMu89w1EWNihOEt9lDwoKQqzdYHyDo3v8qaf2ssJL9BXeO2vtYsmeSCVIcLHLhrmZHBNGYNe3ROxvENIBHmNweYjcRmi2rAJpC8xRYxBRwrKkQFzZh1tf3KcdzMBsHBynbwll6X615VuBvpl6FZnd3hMu6jnm3LMqyDKlqPGafCQnuykbS8r3HAy6+bAslURAFpzZ8Uc8PQJexdj)
     username: ENC(9JVkT8NLIEEXSi8G5uc5ww==)
     password: ENC(f7wNFAbujBcUGXNhIwHTBAFQs56qKIxF)
+  redis:
+    database: 15
+    host: ENC(p+7NRw6xMayWajQgCTt2pk2Fz9Fv9nBp)
+    port: 6379
+    password: ENC(DD+3QemZQZopuSa/BFmdj9dDXjyaevE/)
+    lettuce:
+      pool:
+        max-active: 8
+        max-wait: -1
+        max-idle: 8
+        min-idle: 0
 
 mybatis-plus:
   mapper-locations: classpath*:mapper/*Mapper.xml

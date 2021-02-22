@@ -8,7 +8,9 @@ import org.example.hello.entities.po.StudentCopy
 import org.example.hello.entities.po.User
 import org.example.hello.service.DemoService
 import org.slf4j.Logger
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.CommandLineRunner
+import org.springframework.data.redis.core.RedisTemplate
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
 import javax.servlet.http.HttpServletRequest
@@ -27,6 +29,8 @@ class DemoController(
 ) : CommandLineRunner {
     private val log: Logger = getLogger(this::class.java)
 
+    @Autowired
+    private lateinit var redisTemplate: RedisTemplate<Any, Any>
     /*
     companion object : Log() {}
     private val log: Logger = LoggerFactory.getLogger(DemoController::class.java)
@@ -123,5 +127,13 @@ class DemoController(
 
     override fun run(vararg args: String?) {
         log.info("测试CommandLineRunner | {}")
+
+        log.info("测试redis写入")
+        redisTemplate.opsForValue().set("user", User(123, "test", 99.9))
+
+        log.info("测试redis读出")
+        val user = redisTemplate.opsForValue().get("user") as User
+        log.info("get from redis : $user")
+
     }
 }

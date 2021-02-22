@@ -1,14 +1,18 @@
 package org.example.hello.entities.po
 
+import java.io.Serializable
+
 /**
  * 用户类
  *
  * @author zhuzhenjie
  * @since 2021/1/5
  */
-data class User(var id: Long? = null,
-                var name: String? = null,
-                var grade: Double? = null)
+data class User(
+    var id: Long? = null,
+    var name: String? = null,
+    var grade: Double? = null
+) : Serializable
 
 /*
 常规写法 在对象初始化的时候有默认值
