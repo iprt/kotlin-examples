@@ -8,10 +8,15 @@ package org.example.test.other.optimize
 fun main() {
     optIf1(true)
 
-    var a: String? = null
+    println("========================================")
 
-
+    val a: String? = null
     println(a ?: "hello")
+
+    println("========================================")
+
+    optIf2()
+
 }
 
 
@@ -27,9 +32,35 @@ fun optIf1(status: Boolean) {
 
 
 fun optIf2() {
-}
+    val demo = Demo("winterfell").apply {
+        this.id = 123
+        this.grade = 99.9
+    }
 
+
+    demo.takeIf { it.grade == null }?.apply {
+        println("demo grade is null")
+    }
+
+    val demo2 = Demo("wintefell", 111, null)
+
+    demo2.takeIf { it.grade == null }?.apply {
+        println("demo2 grade is null")
+    }
+}
 
 fun doSth() {
     println("优化if语句")
+}
+
+
+private class Demo(val name: String?) {
+    var id: Int? = null
+    var grade: Double? = null
+
+    constructor(name: String, id: Int?, grade: Double?) : this(name) {
+        this.id = id
+        this.grade = grade
+    }
+
 }
