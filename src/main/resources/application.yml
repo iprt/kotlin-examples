@@ -3,20 +3,20 @@ server:
 
 spring:
   application:
-    name: kotlin-study
+    name: kotlin-examples
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: ENC(8ncmbrvkGjA5kuezMWNnJdLLmILM2ypTbV6q9i8CQT2mG5kYkMu89w1EWNihOEt9lDwoKQqzdYHyDo3v8qaf2ssJL9BXeO2vtYsmeSCVIcLHLhrmZHBNGYNe3ROxvENIBHmNweYjcRmi2rAJpC8xRYxBRwrKkQFzZh1tf3KcdzMBsHBynbwll6X615VuBvpl6FZnd3hMu6jnm3LMqyDKlqPGafCQnuykbS8r3HAy6+bAslURAFpzZ8Uc8PQJexdj)
-    username: ENC(9JVkT8NLIEEXSi8G5uc5ww==)
-    password: ENC(f7wNFAbujBcUGXNhIwHTBAFQs56qKIxF)
+    url: ENC(sOmPDjm2JtFMe8ITpme3NCDcK4b15zUi4DOh+R/Si4aAFGn+ZbHvh+xW2IrdKu2ecMtFC81kxdN+UWZ3lpyMtWrQm2OH/VGxsL6h/rNwW6D41Pk5OwdcNvTZRN3jueUx5T42HCRdS2ndJ7P9D/Avkp0D11JvF1Bx4rgrmHKqBCz+Iv40mB2tygOq8SBJq0Y0IQ7vcdLZFqpe8u3AfLFlEuwuvffmMvn+rGIE2h/YusyZZ8HaHokLZSC4MleDG1W8)
+    username: ENC(PnOVAen15dOTewHYXC5/5g==)
+    password: ENC(M5SpZxPEkU9FTDy+eW8yhamP1ZZ7utHy)
   redis:
     database: 15
-    host: ENC(p+7NRw6xMayWajQgCTt2pk2Fz9Fv9nBp)
+    host: ENC(OlmpxaA9LXoI/KNt+lFfaYQY5dEQtLA0)
     port: 6379
-    password: ENC(DD+3QemZQZopuSa/BFmdj9dDXjyaevE/)
+    password: ENC(ukG21OjLJaT2HwdlXW2gLgT9BJ8j2RFo)
     lettuce:
       pool:
         max-active: 8
