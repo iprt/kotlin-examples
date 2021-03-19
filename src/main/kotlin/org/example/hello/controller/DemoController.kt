@@ -71,7 +71,6 @@ class DemoController(
     @GetMapping("/student/list2")
     fun listStudents2(): MutableList<Student>? = demoService.listStudents2()
 
-
     /**
      * 分页展示学生信息
      */
@@ -109,10 +108,8 @@ class DemoController(
             grade = user.grade ?: 100.0 + 99
         )
         // 返回产生一个user的函数
-        return fun(name: String): User {
-//            userOther.name = if (user.name == null) name else user.name
+        return fun(name: String): User = user.apply {
             userOther.name = user.name ?: name
-            return userOther
         }
     }
 
