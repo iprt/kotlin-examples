@@ -37,14 +37,10 @@ class DemoController(
     */
 
     @GetMapping("hello")
-    fun sayHello(): String {
-        return "hello kotlin"
-    }
+    fun sayHello(): String = "hello kotlin"
 
     @GetMapping("/sayHello")
-    fun sayHello(@RequestParam("name") name: String): String {
-        return "hello $name"
-    }
+    fun sayHello(@RequestParam("name") name: String): String = "hello $name"
 
     @PostMapping("/sayHelloByUser")
     fun sayHelloWithUser(@RequestBody user: User): String {
@@ -67,19 +63,14 @@ class DemoController(
     // ================ curd 测试 ================
 
     @GetMapping("/student/list")
-    fun listStudents(): MutableList<Student>? {
-        return demoService.listStudents()
-    }
+    fun listStudents(): MutableList<Student>? = demoService.listStudents()
 
     @GetMapping("/student-copy/list")
-    fun listStudentCopys(): MutableList<StudentCopy>? {
-        return demoService.listStudentCopys()
-    }
+    fun listStudentCopys(): MutableList<StudentCopy>? = demoService.listStudentCopys()
 
     @GetMapping("/student/list2")
-    fun listStudents2(): MutableList<Student>? {
-        return demoService.listStudents2()
-    }
+    fun listStudents2(): MutableList<Student>? = demoService.listStudents2()
+
 
     /**
      * 分页展示学生信息
