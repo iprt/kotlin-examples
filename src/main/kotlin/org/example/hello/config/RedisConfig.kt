@@ -32,8 +32,8 @@ class RedisConfig : CachingConfigurerSupport() {
 
     @Bean(name = ["redisTemplate"])
     @ConditionalOnMissingBean(name = ["redisTemplate"])
-    fun redisTemplate(redisConnectionFactory: RedisConnectionFactory): RedisTemplate<Any, Any> {
-        return RedisTemplate<Any, Any>().apply {
+    fun redisTemplate(redisConnectionFactory: RedisConnectionFactory): RedisTemplate<Any, Any> =
+        RedisTemplate<Any, Any>().apply {
             val redisSerializer = FastJsonRedisSerializer(Any::class.java)
 
             valueSerializer = redisSerializer
@@ -43,13 +43,11 @@ class RedisConfig : CachingConfigurerSupport() {
             hashKeySerializer = StringRedisSerializer()
             setConnectionFactory(redisConnectionFactory)
         }
-    }
 
     //缓存管理器
     @Bean
-    fun cacheManager(redisConnectionFactory: RedisConnectionFactory): CacheManager {
-        return RedisCacheManager.RedisCacheManagerBuilder.fromConnectionFactory(redisConnectionFactory).build()
-    }
+    fun cacheManager(redisConnectionFactory: RedisConnectionFactory): CacheManager =
+        RedisCacheManager.RedisCacheManagerBuilder.fromConnectionFactory(redisConnectionFactory).build()
 
 }
 
