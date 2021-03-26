@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper
 import com.baomidou.mybatisplus.core.metadata.IPage
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page
 import org.apache.ibatis.annotations.Mapper
-import org.example.hello.entities.po.StudentCopy
+import org.example.hello.entities.po.StudentWithParent
 import org.springframework.stereotype.Repository
 
 /**
@@ -13,10 +13,10 @@ import org.springframework.stereotype.Repository
  */
 @Repository
 @Mapper
-interface StudentCopyMapper : BaseMapper<StudentCopy> {
+interface StudentWithParentMapper : BaseMapper<StudentWithParent> {
 
     /**
      * 分页展示学生信息
      */
-    fun pageListStudents(page: Page<*>): IPage<StudentCopy>?
+    fun pageList(page: Page<*>): IPage<StudentWithParent>?
 }

@@ -1,0 +1,47 @@
+### Student With Parent --> list all
+POST http://127.0.0.1:8090/curd-examples/student-with-parent/list-all
+Accept: application/json
+Content-Type: application/json
+
+### Student With Parent --> list all by condition
+POST http://127.0.0.1:8090/curd-examples/student-with-parent/list-all-by-condition
+Accept: application/json
+Content-Type: application/json
+
+### Student With Parent --> page list
+POST http://127.0.0.1:8090/curd-examples/student-with-parent/page-list
+Accept: application/json
+Content-Type: application/json
+
+{
+  "current": 1,
+  "size": 1
+}
+
+### Student With Parent --> get by id
+POST http://127.0.0.1:8090/curd-examples/student-with-parent/get-by-id
+Accept: application/json
+Content-Type: application/json
+
+{
+  "id": 1
+}
+
+### Student With Address --> list all
+POST http://127.0.0.1:8090/curd-examples/student-with-address/list-all
+Accept: application/json
+Content-Type: application/json
+
+
+### Student With Address --> list all
+POST http://127.0.0.1:8090/curd-examples/student-with-address/page-list
+Accept: application/json
+Content-Type: application/json
+
+{
+  "current": 2,
+  "size": 1
+}
+
+### Student With Address --> get by id
+

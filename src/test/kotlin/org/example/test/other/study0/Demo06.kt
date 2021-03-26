@@ -1,7 +1,7 @@
 package org.example.test.other.study0
 
 /**
- * @author zhuzhenjie
+ * @author winterfell
  * @since 2020/12/29
  */
 // is 用法

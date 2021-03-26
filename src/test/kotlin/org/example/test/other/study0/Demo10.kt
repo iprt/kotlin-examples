@@ -3,7 +3,7 @@ package org.example.test.other.study0
 /**
  * 创建基本类以及实例
  *
- * @author zhuzhenjie
+ * @author winterfell
  * @since 2021/1/3
  */
 

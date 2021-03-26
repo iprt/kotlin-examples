@@ -7,7 +7,9 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
 /**
- * @author zhuzhenjie
+ * MybatisConfig
+ *
+ * @author winterfell
  * @since 2021/1/6
  */
 @Configuration

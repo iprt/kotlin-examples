@@ -6,6 +6,7 @@ import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.RestControllerAdvice
+import org.springframework.web.servlet.NoHandlerFoundException
 
 /**
  * controller 层的异常处理
@@ -25,4 +26,13 @@ class ControllerExceptionHandler {
             .contentType(MediaType.APPLICATION_JSON)
             .body(exception.message ?: StringUtils.EMPTY)
     }
+
+    @ExceptionHandler(NoHandlerFoundException::class)
+    fun handleNoHandlerFoundException(e: NoHandlerFoundException): ResponseEntity<String> {
+        log.error(StringUtils.EMPTY, e)
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+            .contentType(MediaType.APPLICATION_JSON)
+            .body(e.message ?: StringUtils.EMPTY)
+    }
+
 }

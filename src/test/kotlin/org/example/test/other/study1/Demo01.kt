@@ -2,7 +2,7 @@ package org.example.test.other.study1
 
 /**
  * 类与继承
- * @author zhuzhenjie
+ * @author winterfell
  * @since 2021/1/5
  */
 

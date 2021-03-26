@@ -4,7 +4,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 /**
- * @author zhuzhenjie
+ * KotlinExampleApplication
+ *
+ * @author winterfell
  * @since 2021/1/5
  */
 @SpringBootApplication

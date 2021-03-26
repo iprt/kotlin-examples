@@ -3,7 +3,7 @@ package org.example.test.other.optimize
 /**
  * kotlin的一些内置函数
  *
- * @author zhuzhenjie
+ * @author winterfell
  * @since 2021/2/23
  */
 

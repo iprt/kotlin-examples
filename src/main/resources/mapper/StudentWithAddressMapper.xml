@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.example.hello.mapper.StudentMapper">
+<mapper namespace="org.example.hello.mapper.StudentWithAddressMapper">
 
-    <resultMap id="student" type="org.example.hello.entities.po.Student">
+    <resultMap id="StudentWithAddress" type="org.example.hello.entities.po.StudentWithAddress">
         <id column="id" property="id" jdbcType="BIGINT" javaType="java.lang.Long"/>
         <result column="name" property="name"/>
         <result column="info" property="info"
                 typeHandler="com.baomidou.mybatisplus.extension.handlers.FastjsonTypeHandler"/>
     </resultMap>
 
-    <select id="pageListStudents" resultMap="student">
+    <select id="pageList" resultMap="StudentWithAddress">
         SELECT `id`, `name`, `info`
         FROM student
     </select>

@@ -21,7 +21,9 @@ import org.springframework.data.redis.serializer.StringRedisSerializer
 import java.nio.charset.StandardCharsets
 
 /**
- * @author zhuzhenjie
+ * RedisConfig
+ *
+ * @author winterfell
  * @since 2021/1/27
  */
 @EnableCaching
