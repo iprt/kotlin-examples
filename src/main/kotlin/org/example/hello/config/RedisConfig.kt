@@ -21,10 +21,9 @@ import org.springframework.data.redis.serializer.StringRedisSerializer
 import java.nio.charset.StandardCharsets
 
 /**
- * RedisConfig
+ * Redis config
  *
- * @author winterfell
- * @since 2021/1/27
+ * @constructor Create empty Redis config
  */
 @EnableCaching
 @Configuration
@@ -32,6 +31,12 @@ import java.nio.charset.StandardCharsets
 @EnableConfigurationProperties(RedisProperties::class)
 class RedisConfig : CachingConfigurerSupport() {
 
+    /**
+     * Redis template
+     *
+     * @param redisConnectionFactory
+     * @return
+     */
     @Bean(name = ["redisTemplate"])
     @ConditionalOnMissingBean(name = ["redisTemplate"])
     fun redisTemplate(redisConnectionFactory: RedisConnectionFactory): RedisTemplate<Any, Any> =
@@ -46,13 +51,25 @@ class RedisConfig : CachingConfigurerSupport() {
             setConnectionFactory(redisConnectionFactory)
         }
 
-    //缓存管理器
+    /**
+     * Cache manager
+     *
+     * @param redisConnectionFactory
+     * @return
+     */
     @Bean
     fun cacheManager(redisConnectionFactory: RedisConnectionFactory): CacheManager =
         RedisCacheManager.RedisCacheManagerBuilder.fromConnectionFactory(redisConnectionFactory).build()
 
 }
 
+/**
+ * Fast json redis serializer
+ *
+ * @param T
+ * @property clazz
+ * @constructor Create empty Fast json redis serializer
+ */
 class FastJsonRedisSerializer<T>(private val clazz: Class<T>) : RedisSerializer<T> {
 
     @Throws(SerializationException::class)

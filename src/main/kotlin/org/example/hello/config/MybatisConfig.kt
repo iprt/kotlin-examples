@@ -7,14 +7,18 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
 /**
- * MybatisConfig
+ * Mybatis config
  *
- * @author winterfell
- * @since 2021/1/6
+ * @constructor Create empty Mybatis config
  */
 @Configuration
 class MybatisConfig {
 
+    /**
+     * Mybatis plus interceptor
+     *
+     * @return
+     */
     @Bean
     fun mybatisPlusInterceptor(): MybatisPlusInterceptor {
         return MybatisPlusInterceptor().apply {

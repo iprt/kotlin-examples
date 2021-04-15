@@ -8,17 +8,20 @@ import org.example.hello.entities.po.StudentWithAddress
 import org.springframework.stereotype.Repository
 
 /**
- * StudentWithAddressMapper
+ * Student with address mapper
  *
- * @author winterfell
- * @since 2021/1/6
+ * @constructor Create empty Student with address mapper
  */
 @Repository
 @Mapper
 interface StudentWithAddressMapper : BaseMapper<StudentWithAddress> {
 
+
     /**
-     * 分页展示学生信息
+     * Page list
+     *
+     * @param page
+     * @return
      */
     fun pageList(page: Page<*>): IPage<StudentWithAddress>?
 }

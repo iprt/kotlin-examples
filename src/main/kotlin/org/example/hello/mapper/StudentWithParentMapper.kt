@@ -8,15 +8,20 @@ import org.example.hello.entities.po.StudentWithParent
 import org.springframework.stereotype.Repository
 
 /**
- * @author winterfell
- * @since 2021/1/6
+ * Student with parent mapper
+ *
+ * @constructor Create empty Student with parent mapper
  */
 @Repository
 @Mapper
 interface StudentWithParentMapper : BaseMapper<StudentWithParent> {
 
+
     /**
-     * 分页展示学生信息
+     * Page list
+     *
+     * @param page
+     * @return
      */
     fun pageList(page: Page<*>): IPage<StudentWithParent>?
 }

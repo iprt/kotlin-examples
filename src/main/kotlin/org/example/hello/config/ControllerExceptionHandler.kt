@@ -9,16 +9,21 @@ import org.springframework.web.bind.annotation.RestControllerAdvice
 import org.springframework.web.servlet.NoHandlerFoundException
 
 /**
- * controller 层的异常处理
+ * Controller exception handler
  *
- * @author winterfell
- * @since 2021/1/6
+ * @constructor Create empty Controller exception handler
  */
 @RestControllerAdvice
 class ControllerExceptionHandler {
 
     private val log = getLogger(this::class.java)
 
+    /**
+     * Handle exception
+     *
+     * @param exception
+     * @return
+     */
     @ExceptionHandler(Exception::class)
     fun handleException(exception: Exception): ResponseEntity<String> {
         log.error(StringUtils.EMPTY, exception)
@@ -27,6 +32,12 @@ class ControllerExceptionHandler {
             .body(exception.message ?: StringUtils.EMPTY)
     }
 
+    /**
+     * Handle no handler found exception
+     *
+     * @param e
+     * @return
+     */
     @ExceptionHandler(NoHandlerFoundException::class)
     fun handleNoHandlerFoundException(e: NoHandlerFoundException): ResponseEntity<String> {
         log.error(StringUtils.EMPTY, e)

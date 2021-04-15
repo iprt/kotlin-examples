@@ -4,14 +4,18 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 /**
- * KotlinExampleApplication
+ * Kotlin example application
  *
- * @author winterfell
- * @since 2021/1/5
+ * @constructor Create empty Kotlin example application
  */
 @SpringBootApplication
 class KotlinExampleApplication
 
+/**
+ * Main
+ *
+ * @param args
+ */
 fun main(args: Array<String>) {
     runApplication<KotlinExampleApplication>(*args)
 }

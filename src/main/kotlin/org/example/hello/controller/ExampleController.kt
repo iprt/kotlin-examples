@@ -11,10 +11,9 @@ import org.springframework.web.bind.annotation.*
 import javax.servlet.http.HttpServletRequest
 
 /**
- * 完整demo
+ * Example controller
  *
- * @author winterfell
- * @since 2021/1/5
+ * @constructor Create empty Example controller
  */
 @RestController
 @RequestMapping("/kotlin-examples")
@@ -29,24 +28,53 @@ class ExampleController : CommandLineRunner {
     @Autowired
     private lateinit var redisTemplate: RedisTemplate<Any, Any>
 
+    /**
+     * Say hello
+     *
+     * @return
+     */
     @GetMapping("hello")
     fun sayHello(): String = "hello kotlin"
 
+    /**
+     * Say hello
+     *
+     * @param name
+     * @return
+     */
     @GetMapping("/sayHello")
     fun sayHello(@RequestParam("name") name: String): String = "hello $name"
 
+    /**
+     * Say hello with user
+     *
+     * @param user
+     * @return
+     */
     @PostMapping("/sayHelloByUser")
     fun sayHelloWithUser(@RequestBody user: User): String {
         log.info("user is {}", user)
         return "hello ${user.name}"
     }
 
+    /**
+     * Copy user
+     *
+     * @param user
+     * @return
+     */
     @PostMapping("/copyUser")
     fun copyUser(@RequestBody user: User): User {
         log.info("need copy user is : {}", user)
         return copy(user)("Ray")
     }
 
+    /**
+     * Http servlet request test
+     *
+     * @param httpServletRequest
+     * @return
+     */
     @GetMapping("/testHttpServletRequest")
     fun httpServletRequestTest(httpServletRequest: HttpServletRequest): String {
         val uri = httpServletRequest.requestURI

@@ -12,10 +12,11 @@ import org.example.hello.service.StudentService
 import org.springframework.stereotype.Service
 
 /**
- * StudentServiceImpl
+ * Student service impl
  *
- * @author winterfell
- * @since 2021/3/26
+ * @property studentWithParentMapper
+ * @property studentWithAddressMapper
+ * @constructor Create empty Student service impl
  */
 @Service
 class StudentServiceImpl(
@@ -43,7 +44,7 @@ class StudentServiceImpl(
         return studentWithParentMapper.pageListStudents(page)
 */
         log.info("分页查询 student with parent info")
-        return studentWithParentMapper.selectPage(page, null);
+        return studentWithParentMapper.selectPage(page, null)
     }
 
     override fun getStuWithParentById(id: Long): StudentWithParent? {

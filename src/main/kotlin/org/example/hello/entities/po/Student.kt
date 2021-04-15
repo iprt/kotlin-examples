@@ -10,10 +10,12 @@ import com.fasterxml.jackson.databind.ser.std.ToStringSerializer
 import javax.validation.constraints.NotBlank
 
 /**
- * StudentWithParent
+ * Student with parent
  *
- * @author winterfell
- * @since 2021/1/6
+ * @property id
+ * @property name
+ * @property info
+ * @constructor Create empty Student with parent
  */
 @TableName(value = "student", autoResultMap = true)
 data class StudentWithParent(
@@ -29,13 +31,27 @@ data class StudentWithParent(
     var info: Parent? = null
 ) {
     /**
-     * 验证分组
+     * Add
+     *
+     * @constructor Create empty Add
      */
     interface Add
 
+    /**
+     * Get
+     *
+     * @constructor Create empty Get
+     */
     interface Get
 }
 
+/**
+ * Parent
+ *
+ * @property mother
+ * @property father
+ * @constructor Create empty Parent
+ */
 data class Parent(
     var mother: String? = null,
     var father: String? = null
@@ -56,10 +72,12 @@ class Student {
 
 
 /**
- * StudentWithAddress
+ * Student with address
  *
- * @author winterfell
- * @since 2021/1/25
+ * @property id
+ * @property name
+ * @property info
+ * @constructor Create empty Student with address
  */
 @TableName(value = "student", autoResultMap = true)
 data class StudentWithAddress(
@@ -75,13 +93,27 @@ data class StudentWithAddress(
     var info: Address? = null
 ) {
     /**
-     * 验证分组
+     * Add
+     *
+     * @constructor Create empty Add
      */
     interface Add
 
+    /**
+     * Get
+     *
+     * @constructor Create empty Get
+     */
     interface Get
 }
 
+/**
+ * Address
+ *
+ * @property lgtd
+ * @property lttd
+ * @constructor Create empty Address
+ */
 data class Address(
     var lgtd: Double? = 0.0,
     var lttd: Double? = 0.0
