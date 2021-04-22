@@ -8,14 +8,12 @@ plugins {
 }
 
 repositories {
-    maven { url 'https://maven.aliyun.com/repository/public/' }
+    maven { url 'https://maven.aliyun.com/repository/public' }
     mavenLocal()
-    mavenCentral()
 }
 
 group = 'org.example'
 version = '1.0.0-SNAPSHOT'
-sourceCompatibility = '1.8'
 
 compileKotlin {
     kotlinOptions {
