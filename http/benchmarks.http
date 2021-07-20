@@ -1,0 +1,17 @@
+### 测试 auto_increment 插入
+http://127.0.0.1:8090/benchmarks/add/auto/200000
+Accept: application/json
+
+
+### 测试 flow 插入
+http://127.0.0.1:8090/benchmarks/add/flow/200000
+Accept: application/json
+
+
+### 测试 auto 查询
+http://127.0.0.1:8090/benchmarks/query/auto
+Accept: application/json
+
+### 测试 flow 查询
+http://127.0.0.1:8090/benchmarks/query/flow
+Accept: application/json
