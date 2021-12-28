@@ -11,9 +11,9 @@ spring:
     time-zone: GMT+8
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: ENC(sOmPDjm2JtFMe8ITpme3NCDcK4b15zUi4DOh+R/Si4aAFGn+ZbHvh+xW2IrdKu2ecMtFC81kxdN+UWZ3lpyMtWrQm2OH/VGxsL6h/rNwW6D41Pk5OwdcNvTZRN3jueUx5T42HCRdS2ndJ7P9D/Avkp0D11JvF1Bx4rgrmHKqBCz+Iv40mB2tygOq8SBJq0Y0IQ7vcdLZFqpe8u3AfLFlEuwuvffmMvn+rGIE2h/YusyZZ8HaHokLZSC4MleDG1W8)
-    username: ENC(PnOVAen15dOTewHYXC5/5g==)
-    password: ENC(M5SpZxPEkU9FTDy+eW8yhamP1ZZ7utHy)
+    url: jdbc:mysql://172.100.1.100:3306/zhuzhenjie?characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: Root@123#
   redis:
     database: 15
     host: ENC(OlmpxaA9LXoI/KNt+lFfaYQY5dEQtLA0)
@@ -25,6 +25,15 @@ spring:
         max-wait: -1
         max-idle: 8
         min-idle: 0
+  mqtt:
+    broker: tcp://172.100.1.100:1883
+    username: username
+    password: password
+    clientId: ${random.uuid}
+    defaultTopic: /topic/default
+    topics:
+      - /topic/default
+      - /hello/world
 
 mybatis-plus:
   mapper-locations: classpath*:mapper/*Mapper.xml

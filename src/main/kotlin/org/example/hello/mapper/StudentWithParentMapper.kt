@@ -16,7 +16,6 @@ import org.springframework.stereotype.Repository
 @Mapper
 interface StudentWithParentMapper : BaseMapper<StudentWithParent> {
 
-
     /**
      * Page list
      *

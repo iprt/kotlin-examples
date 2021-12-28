@@ -1,0 +1,32 @@
+### 测试默认topic
+POST http://127.0.0.1:8090/mqtt/publishToDefaultTopic
+Accept: application/json
+Content-Type: application/json
+
+{
+  "msg": "hello world"
+}
+
+### withoutqos
+POST http://127.0.0.1:8090/mqtt/publishWithoutQos
+Accept: application/json
+Content-Type: application/json
+
+{
+  "topic": "/hello/world",
+  "msg": "hello world"
+}
+
+### withqos
+POST http://127.0.0.1:8090/mqtt/publishWithQos
+Accept: application/json
+Content-Type: application/json
+
+{
+  "topic": "/hello/world",
+  "qos": 2,
+  "msg": "hello world"
+}
+
+
+
