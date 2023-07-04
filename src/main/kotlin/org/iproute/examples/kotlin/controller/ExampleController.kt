@@ -3,9 +3,6 @@ package org.iproute.examples.kotlin.controller
 import org.iproute.examples.kotlin.config.getLogger
 import org.iproute.examples.kotlin.entities.po.User
 import org.slf4j.Logger
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.CommandLineRunner
-import org.springframework.data.redis.core.RedisTemplate
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
 import javax.servlet.http.HttpServletRequest
@@ -18,22 +15,20 @@ import javax.servlet.http.HttpServletRequest
 @RestController
 @RequestMapping("/kotlin-examples")
 @Validated
-class ExampleController : CommandLineRunner {
+class ExampleController {
     private val log: Logger = getLogger(this::class.java)
+
     /*
     companion object : Log() {}
     private val log: Logger = LoggerFactory.getLogger(DemoController::class.java)
     */
-
-    @Autowired
-    private lateinit var redisTemplate: RedisTemplate<Any, Any>
 
     /**
      * Say hello
      *
      * @return
      */
-    @GetMapping("hello")
+    @GetMapping("/hello")
     fun sayHello(): String = "hello kotlin"
 
     /**
@@ -93,14 +88,4 @@ class ExampleController : CommandLineRunner {
         }
     }
 
-    override fun run(vararg args: String?) {
-        log.info("测试CommandLineRunner")
-
-        log.info("测试redis写入")
-        redisTemplate.opsForValue().set("user", User(123, "test", 99.9))
-
-        log.info("测试redis读出")
-        val user = redisTemplate.opsForValue().get("user") as User
-        log.info("get from redis : $user")
-    }
 }
