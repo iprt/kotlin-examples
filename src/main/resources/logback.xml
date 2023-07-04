@@ -2,8 +2,8 @@
     <!--  统一的日志配置 -->
 
 
-    <property name="LOG_FOLDER" value="./logs/kotlin-study"/>
-    <property name="LOG_FILENAME" value="kotlin-study"/>
+    <property name="LOG_FOLDER" value="./logs/kotlin-examples"/>
+    <property name="LOG_FILENAME" value="kotlin-examples"/>
 
     <!--  base config  -->
     <property name="LOG_MAX_FILE_SIZE" value="30MB"/>
@@ -85,7 +85,7 @@
     <logger name="org.mybatis.spring" level="warn"/>
     <logger name="org.hibernate" level="info"/>
 
-    <logger name="org.example" level="info"/>
+    <logger name="org.iproute" level="info"/>
 
     <logger name="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" level="trace"/>
 

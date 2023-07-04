@@ -13,18 +13,19 @@ spring:
     driverClassName: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://172.100.1.100:3306/zhuzhenjie?characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false&useSSL=false&serverTimezone=Asia/Shanghai
     username: root
-    password: Root@123#
+    password: root
   redis:
-    database: 15
-    host: ENC(OlmpxaA9LXoI/KNt+lFfaYQY5dEQtLA0)
+    host: 172.100.1.100
     port: 6379
-    password: ENC(ukG21OjLJaT2HwdlXW2gLgT9BJ8j2RFo)
+    password: root
+    database: 15
     lettuce:
       pool:
         max-active: 8
         max-wait: -1
         max-idle: 8
         min-idle: 0
+  # mqtt config
   mqtt:
     broker: tcp://172.100.1.100:1883
     username: username
@@ -46,4 +47,4 @@ jasypt:
 logging:
   level:
     # mapper 日志输出
-    org.example.hello.mapper: debug
+    org.iproute.examples.kotlin.mapper: debug
