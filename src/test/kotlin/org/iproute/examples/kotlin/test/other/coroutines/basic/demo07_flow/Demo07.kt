@@ -1,4 +1,4 @@
-package org.iproute.examples.kotlin.test.other.coroutines.basic.demo07_asyncflow
+package org.iproute.examples.kotlin.test.other.coroutines.basic.demo07_flow
 
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
