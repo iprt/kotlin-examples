@@ -1,4 +1,4 @@
-package org.iproute.examples.kotlin.test.other.coroutines.basic.demo07_flow
+package org.iproute.examples.kotlin.test.other.coroutines.basic.demo07_flow.Demo07_flow_take.kt
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
@@ -12,13 +12,11 @@ import kotlinx.coroutines.runBlocking
  * @author zhuzhenjie
  * @since 2023/7/4
  */
-fun main() {
-    runBlocking {
-        numbers().take(2)
-            .collect {
-                println(it)
-            }
-    }
+fun main() = runBlocking {
+    numbers().take(2)
+        .collect {
+            println(it)
+        }
 }
 
 fun numbers(): Flow<Int> = flow {

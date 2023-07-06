@@ -1,4 +1,4 @@
-package org.iproute.examples.kotlin.test.other.coroutines.basic.demo07_flow
+package org.iproute.examples.kotlin.test.other.coroutines.basic.demo07_flow.Demo07_flow.kt
 
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
@@ -13,19 +13,16 @@ import kotlinx.coroutines.runBlocking
  * @author zhuzhenjie
  * @since 2023/7/3
  */
-fun main() {
-    println("simple flow")
-    runBlocking {
-        launch {
-            for (k in 1..3) {
-                println("I'm not blocked $k")
-                delay(100)
-            }
+fun main() = runBlocking {
+    launch {
+        for (k in 1..3) {
+            println("I'm not blocked $k")
+            delay(100)
         }
+    }
 
-        simpleFlow().collect {
-            println(it)
-        }
+    simpleFlow().collect {
+        println(it)
     }
 }
 

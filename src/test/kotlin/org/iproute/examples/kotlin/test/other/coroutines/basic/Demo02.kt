@@ -1,4 +1,4 @@
-package org.iproute.examples.kotlin.test.other.coroutines.basic.demo02
+package org.iproute.examples.kotlin.test.other.coroutines.basic.Demo02.kt
 
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
@@ -12,13 +12,11 @@ import kotlinx.coroutines.runBlocking
  * @since 2023/7/3
  */
 
-fun main() {
-    runBlocking {
-        launch {
-            doWorld()
-        }
-        println("Hello,")
+fun main() = runBlocking {
+    launch {
+        doWorld()
     }
+    println("Hello,")
 
     runBlocking {
         doWorld2()
@@ -30,6 +28,7 @@ fun main() {
 
     println("Done!")
 }
+
 
 suspend fun doWorld() {
     delay(1000L)

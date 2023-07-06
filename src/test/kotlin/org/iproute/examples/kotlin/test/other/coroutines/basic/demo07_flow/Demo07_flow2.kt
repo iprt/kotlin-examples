@@ -1,4 +1,4 @@
-package org.iproute.examples.kotlin.test.other.coroutines.basic.demo07_flow
+package org.iproute.examples.kotlin.test.other.coroutines.basic.demo07_flow.Demo07_flow2.kt
 
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
@@ -13,27 +13,24 @@ import kotlinx.coroutines.runBlocking
  * @since 2023/7/3
  */
 
-fun main() {
+fun main() = runBlocking {
+    println("Calling simple function...")
+    val flow = simpleFlow()
 
-    runBlocking {
-        println("Calling simple function...")
-        val flow = simpleFlow2()
-
-        println("Calling collect...")
-        flow.collect {
-            println(it)
-        }
-
-        println("Calling collect again...")
-        flow.collect {
-            println(it)
-        }
-
+    println("Calling collect...")
+    flow.collect {
+        println(it)
     }
+
+    println("Calling collect again...")
+    flow.collect {
+        println(it)
+    }
+
 }
 
 
-fun simpleFlow2(): Flow<Int> = flow {
+fun simpleFlow(): Flow<Int> = flow {
     println("Flow started")
 
     for (i in 1..3) {

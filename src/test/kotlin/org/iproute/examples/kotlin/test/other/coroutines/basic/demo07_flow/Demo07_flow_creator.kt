@@ -1,4 +1,4 @@
-package org.iproute.examples.kotlin.test.other.coroutines.basic.demo07_flow
+package org.iproute.examples.kotlin.test.other.coroutines.basic.demo07_flow.Demo07_flow_creator.kt
 
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.collect
@@ -10,13 +10,9 @@ import kotlinx.coroutines.runBlocking
  * @author zhuzhenjie
  * @since 2023/7/4
  */
-fun main() {
-
-    runBlocking {
-        (1..3).asFlow()
-            .collect {
-                println(it)
-            }
-    }
-
+fun main() = runBlocking {
+    (1..3).asFlow()
+        .collect {
+            println(it)
+        }
 }

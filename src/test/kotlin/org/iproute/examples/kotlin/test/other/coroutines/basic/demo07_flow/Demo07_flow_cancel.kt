@@ -1,4 +1,4 @@
-package org.iproute.examples.kotlin.test.other.coroutines.basic.demo07_flow
+package org.iproute.examples.kotlin.test.other.coroutines.basic.demo07_flow.Demo07_flow_cancel.kt
 
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
@@ -13,18 +13,15 @@ import kotlinx.coroutines.withTimeoutOrNull
  * @author zhuzhenjie
  * @since 2023/7/4
  */
-fun main() {
-
-    runBlocking {
-        // 在 250 毫秒后超时
-        withTimeoutOrNull(250) {
-            simpleFlow3().collect {
-                println(it)
-            }
+fun main() = runBlocking {
+    // 在 250 毫秒后超时
+    withTimeoutOrNull(250) {
+        simpleFlow3().collect {
+            println(it)
         }
-
-        println("Done")
     }
+
+    println("Done")
 }
 
 
