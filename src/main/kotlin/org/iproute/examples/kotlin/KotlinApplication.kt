@@ -1,6 +1,7 @@
 package org.iproute.examples.kotlin
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
+import org.springframework.boot.context.properties.ConfigurationPropertiesScan
 import org.springframework.boot.runApplication
 
 /**
@@ -9,6 +10,7 @@ import org.springframework.boot.runApplication
  * @constructor Create empty Kotlin example application
  */
 @SpringBootApplication
+@ConfigurationPropertiesScan
 class KotlinApplication
 
 /**

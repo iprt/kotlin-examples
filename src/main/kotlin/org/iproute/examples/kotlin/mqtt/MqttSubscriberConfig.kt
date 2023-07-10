@@ -1,11 +1,10 @@
-package org.iproute.examples.kotlin.config.mqtt
+package org.iproute.examples.kotlin.mqtt
 
 import org.apache.commons.lang3.StringUtils
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions
 import org.iproute.examples.kotlin.config.getLogger
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import org.springframework.integration.annotation.IntegrationComponentScan
 import org.springframework.integration.annotation.ServiceActivator
 import org.springframework.integration.channel.DirectChannel
 import org.springframework.integration.core.MessageProducer
@@ -19,13 +18,12 @@ import org.springframework.messaging.MessageHandler
 /**
  * Mqtt subscriber config
  *
- * @property mqttConfig
+ * @property mqttSubscribeProperties
  * @constructor Create empty Mqtt subscriber config
  */
 @Configuration
-@IntegrationComponentScan
 class MqttSubscriberConfig(
-    private val mqttConfig: MqttConfig,
+    private val mqttSubscribeProperties: MqttSubscribeProperties
 ) {
     private val log = getLogger(this::class.java)
 
@@ -36,14 +34,14 @@ class MqttSubscriberConfig(
      */
     @Bean
     fun subscriberMqttConnectOptions(): MqttConnectOptions {
-        val username = mqttConfig.username
-        val password = mqttConfig.password
+        val username = mqttSubscribeProperties.username
+        val password = mqttSubscribeProperties.password
         val options = MqttConnectOptions()
         if (StringUtils.isNotBlank(username) && StringUtils.isNotBlank(password)) {
             options.userName = username
             options.password = password.toCharArray()
         }
-        options.serverURIs = arrayOf(mqttConfig.broker)
+        options.serverURIs = arrayOf(mqttSubscribeProperties.broker)
         options.keepAliveInterval = 60
         return options
     }
@@ -77,16 +75,13 @@ class MqttSubscriberConfig(
      */
     @Bean
     fun inbound(): MessageProducer {
-        log.info("consume topic : ${mqttConfig.defaultTopic}")
-        val topicArr = mqttConfig.topics.toTypedArray()
-        topicArr.forEach { log.info("consume topic : $it") }
-        val adapter =
-            MqttPahoMessageDrivenChannelAdapter(
-                mqttConfig.clientId,
-                mqttClientFactory(),
-                mqttConfig.defaultTopic,
-                *topicArr
-            )
+        val topicArr = mqttSubscribeProperties.topics.toTypedArray()
+        topicArr.forEach { log.info("消费 topic : $it") }
+        val adapter = MqttPahoMessageDrivenChannelAdapter(
+            mqttSubscribeProperties.clientId,
+            mqttClientFactory(),
+            *topicArr
+        )
         adapter.setConverter(DefaultPahoMessageConverter())
         adapter.setQos(1)
         adapter.outputChannel = mqttInputChannel()
@@ -98,7 +93,7 @@ class MqttSubscriberConfig(
      *
      * @return
      */
-    @Bean
+    @Bean("inboundHandler")
     @ServiceActivator(inputChannel = "mqttInputChannel")
     fun handler(): MessageHandler {
         return MessageHandler {
@@ -108,7 +103,7 @@ class MqttSubscriberConfig(
             log.info("--------------------START-------------------")
             log.info("接收到订阅消息:")
             log.info("topic: $topic")
-            log.info("message: $payload")
+            log.info("message: \n$payload")
             log.info("---------------------END--------------------\n")
         }
     }

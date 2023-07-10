@@ -27,14 +27,20 @@ spring:
         min-idle: 0
   # mqtt config
   mqtt:
-    broker: tcp://172.100.1.100:1883
-    username: username
-    password: password
-    clientId: ${random.uuid}
-    defaultTopic: /topic/default
-    topics:
-      - /topic/default
-      - /hello/world
+    publish:
+      broker: tcp://172.100.1.100:1883
+      username: username
+      password: password
+      clientId: publish
+      defaultTopic: /topic/default
+    subscribe:
+      broker: tcp://172.100.1.100:1883
+      username: username
+      password: password
+      clientId: subscribe
+      topics:
+        - /topic/default
+        - /hello/world
 
 mybatis-plus:
   mapper-locations: classpath*:mapper/*Mapper.xml

@@ -6,7 +6,7 @@ import javax.validation.constraints.NotNull
 /**
  * MqttMsgDto
  *
- * @author winterfell
+ * @author zhuzhenjie
  * @since 2021/12/28
  */
 data class MqttMsgDto(

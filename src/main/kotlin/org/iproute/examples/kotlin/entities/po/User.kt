@@ -5,7 +5,7 @@ import java.io.Serializable
 /**
  * 用户类
  *
- * @author winterfell
+ * @author zhuzhenjie
  * @since 2021/1/5
  */
 data class User(

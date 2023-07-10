@@ -1,10 +1,10 @@
-package org.iproute.examples.kotlin.config.mqtt
+package org.iproute.examples.kotlin.mqtt
 
 import org.apache.commons.lang3.StringUtils
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions
+import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import org.springframework.integration.annotation.IntegrationComponentScan
 import org.springframework.integration.annotation.ServiceActivator
 import org.springframework.integration.channel.DirectChannel
 import org.springframework.integration.mqtt.core.DefaultMqttPahoClientFactory
@@ -16,20 +16,13 @@ import org.springframework.messaging.MessageHandler
 /**
  * MqttPublishConfig
  *
- * @author winterfell
+ * @author zhuzhenjie
  * @since 2021/12/27
  */
 @Configuration
-@IntegrationComponentScan
 class MqttPublisherConfig(
-    private val mqttConfig: MqttConfig
+    private val mqttPublishProperties: MqttPublishProperties
 ) {
-
-    companion object {
-        const val CHANNEL_NAME_OUT = "mqttOutboundChannel";
-        const val WILL_TOPIC = "/topic/will"
-        val WILL_DATA = "offline".toByteArray(Charsets.UTF_8);
-    }
 
     /**
      * Publisher mqtt connection option
@@ -39,18 +32,18 @@ class MqttPublisherConfig(
     @Bean
     fun publisherMqttConnectionOption(): MqttConnectOptions {
         return MqttConnectOptions().apply {
-            if (StringUtils.isNotBlank(mqttConfig.username)) {
-                this.userName = mqttConfig.username
+            if (StringUtils.isNotBlank(mqttPublishProperties.username)) {
+                this.userName = mqttPublishProperties.username
             }
-            if (StringUtils.isNotBlank(mqttConfig.password)) {
-                this.password = mqttConfig.password.toCharArray()
+            if (StringUtils.isNotBlank(mqttPublishProperties.password)) {
+                this.password = mqttPublishProperties.password.toCharArray()
             }
 
-            this.serverURIs = StringUtils.split(mqttConfig.broker, ",")
+            this.serverURIs = StringUtils.split(mqttPublishProperties.broker, ",")
             this.isCleanSession = true
             this.connectionTimeout = 10
             this.keepAliveInterval = 20
-            this.setWill(WILL_TOPIC, WILL_DATA, 2, false)
+            this.setWill(WILL_TOPIC, WILL_DATA, 0, false)
         }
     }
 
@@ -60,9 +53,9 @@ class MqttPublisherConfig(
      * @return
      */
     @Bean
-    fun publisherMqttClientFactory(): MqttPahoClientFactory {
+    fun publisherMqttClientFactory(publisherMqttConnectionOption: MqttConnectOptions): MqttPahoClientFactory {
         return DefaultMqttPahoClientFactory().apply {
-            this.connectionOptions = publisherMqttConnectionOption()
+            this.connectionOptions = publisherMqttConnectionOption
         }
     }
 
@@ -71,9 +64,9 @@ class MqttPublisherConfig(
      *
      * @return
      */
-    @Bean(CHANNEL_NAME_OUT)
+    @Bean
     fun mqttOutboundChannel(): MessageChannel {
-        return DirectChannel();
+        return DirectChannel()
     }
 
     /**
@@ -82,12 +75,12 @@ class MqttPublisherConfig(
      * @return
      */
     @Bean
-    @ServiceActivator(inputChannel = CHANNEL_NAME_OUT)
-    fun mqttOutbound(): MessageHandler {
-        val handler = MqttPahoMessageHandler(mqttConfig.clientId, publisherMqttClientFactory())
-        handler.setAsync(false)
-        handler.setDefaultTopic(mqttConfig.defaultTopic)
-        return handler
+    @ServiceActivator(inputChannel = "mqttOutboundChannel")
+    fun outbound(@Qualifier("publisherMqttClientFactory") publisherMqttClientFactory: MqttPahoClientFactory): MessageHandler {
+        val messageHandler = MqttPahoMessageHandler(mqttPublishProperties.clientId, publisherMqttClientFactory)
+        messageHandler.setDefaultTopic(mqttPublishProperties.defaultTopic)
+        messageHandler.setAsync(true)
+        return messageHandler
     }
 
 }

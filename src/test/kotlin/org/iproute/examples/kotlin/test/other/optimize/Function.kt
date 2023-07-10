@@ -3,7 +3,7 @@ package org.iproute.examples.kotlin.test.other.optimize
 /**
  * kotlin的一些内置函数
  *
- * @author winterfell
+ * @author zhuzhenjie
  * @since 2021/2/23
  */
 
