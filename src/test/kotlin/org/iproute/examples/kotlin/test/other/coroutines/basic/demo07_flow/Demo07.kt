@@ -9,7 +9,6 @@ import kotlinx.coroutines.runBlocking
  * @author zhuzhenjie
  * @since 2023/7/3
  */
-
 fun main() {
 
     println("simple")
