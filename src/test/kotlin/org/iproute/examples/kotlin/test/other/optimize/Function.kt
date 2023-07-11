@@ -10,25 +10,25 @@ package org.iproute.examples.kotlin.test.other.optimize
 fun main() {
 
     println("---------------- let ----------------")
-    org.iproute.examples.kotlin.test.other.optimize.test_let()
+    test_let()
 
     println("---------------- also ----------------")
-    org.iproute.examples.kotlin.test.other.optimize.test_also()
+    test_also()
 
     println("---------------- with ----------------")
-    org.iproute.examples.kotlin.test.other.optimize.test_with()
+    test_with()
 
     println("---------------- run ----------------")
-    org.iproute.examples.kotlin.test.other.optimize.test_run()
+    test_run()
 
     println("---------------- apply ----------------")
-    org.iproute.examples.kotlin.test.other.optimize.test_apply()
+    test_apply()
 
     println("---------------- takeIf ----------------")
-    org.iproute.examples.kotlin.test.other.optimize.test_takeIf()
+    test_takeIf()
 
     println("---------------- takeUnless ----------------")
-    org.iproute.examples.kotlin.test.other.optimize.test_takeUnless()
+    test_takeUnless()
 
 }
 
@@ -47,21 +47,21 @@ fun main() {
  */
 private fun test_let() {
     // 作用1：使用it替代object对象去访问其公有的属性 & 方法
-/*
-    object.let{
-        it.todo()
-    }
-*/
+    /*
+        object.let{
+            it.todo()
+        }
+    */
 
     // 作用2：判断object为null的操作
-/*
-    object?.let{//表示object不为null的条件下，才会去执行let函数体
-        it.todo()
-    }
-*/
+    /*
+        object?.let{//表示object不为null的条件下，才会去执行let函数体
+            it.todo()
+        }
+    */
     // 注：返回值 = 最后一行 / return的表达式
 
-    val people = org.iproute.examples.kotlin.test.other.optimize.People("name", 18)
+    val people = People("name", 18)
 
     people?.let {
         it.function1()
@@ -79,7 +79,7 @@ private fun test_let() {
  *      - also函数：返回值 = 传入的对象的本身
  */
 private fun test_also() {
-    val people = org.iproute.examples.kotlin.test.other.optimize.People("name", 18)
+    val people = People("name", 18)
     val alsoResult = people?.also {
         it.function1()
         it.function2()
@@ -112,7 +112,7 @@ private fun test_also() {
  */
 private fun test_with() {
 
-    val people = org.iproute.examples.kotlin.test.other.optimize.People("carson", 25)
+    val people = People("carson", 25)
     with(people) {
         println("my name is $name, I am $age years old")
     }
@@ -130,15 +130,15 @@ private fun test_with() {
  *      3. 统一做判空处理
  */
 private fun test_run() {
-/*
-    object.run{
-        // ...
-    }
-*/
+    /*
+        object.run{
+            // ...
+        }
+    */
 
     // 返回值 = 函数块的最后一行 / return表达式
 
-    val people = org.iproute.examples.kotlin.test.other.optimize.People("carson", 25)
+    val people = People("carson", 25)
 
     // 此处要调用people的name 和 age属性，且要判空
     people?.run {
@@ -157,7 +157,7 @@ private fun test_run() {
  *       - apply函数返回传入的对象的本身
  */
 private fun test_apply() {
-    val people = org.iproute.examples.kotlin.test.other.optimize.People("carson", 25)
+    val people = People("carson", 25)
 
     val runResult = people.run {
         this.function1()
@@ -179,7 +179,7 @@ private fun test_apply() {
 }
 
 private fun test_takeIf() {
-    val people = org.iproute.examples.kotlin.test.other.optimize.People("Jack", 24)
+    val people = People("Jack", 24)
     people.takeIf { it.age > 20 }?.run {
         println("Jack's age > 20")
     }
@@ -191,7 +191,7 @@ private fun test_takeIf() {
 
 
 private fun test_takeUnless() {
-    val people = org.iproute.examples.kotlin.test.other.optimize.People("Niko", 24)
+    val people = People("Niko", 24)
 
     people.takeUnless { it.age > 20 }?.run {
         println("do nothing ...")
