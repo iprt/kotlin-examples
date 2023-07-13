@@ -1,14 +1,14 @@
-### Student With Parent --> list all
+### 获取所有包含父母信息的学生列表
 POST http://127.0.0.1:8090/curd-examples/student-with-parent/list-all
 Accept: application/json
 Content-Type: application/json
 
-### Student With Parent --> list all by condition
+### 获取指定id为1的包含父母信息的学生
 POST http://127.0.0.1:8090/curd-examples/student-with-parent/list-all-by-condition
 Accept: application/json
 Content-Type: application/json
 
-### Student With Parent --> page list
+### 分页获取所有包含父母信息的学生列表
 POST http://127.0.0.1:8090/curd-examples/student-with-parent/page-list
 Accept: application/json
 Content-Type: application/json
@@ -18,7 +18,7 @@ Content-Type: application/json
   "size": 1
 }
 
-### Student With Parent --> get by id
+### 获取指定id为1的包含父母信息的学生
 POST http://127.0.0.1:8090/curd-examples/student-with-parent/get-by-id
 Accept: application/json
 Content-Type: application/json
@@ -27,13 +27,13 @@ Content-Type: application/json
   "id": 1
 }
 
-### Student With Address --> list all
+### 获取所有包含经纬度的学生列表
 POST http://127.0.0.1:8090/curd-examples/student-with-address/list-all
 Accept: application/json
 Content-Type: application/json
 
 
-### Student With Address --> list all
+### 分页获取所有包含经纬度的学生列表
 POST http://127.0.0.1:8090/curd-examples/student-with-address/page-list
 Accept: application/json
 Content-Type: application/json
