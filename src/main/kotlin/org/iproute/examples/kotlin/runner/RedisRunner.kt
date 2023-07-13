@@ -17,6 +17,11 @@ import org.springframework.stereotype.Component
 @Component
 class RedisRunner : CommandLineRunner {
 
+    companion object {
+        const val KEY = "user"
+        val VALUE = User(123, "test", 99.9)
+    }
+
     private val log: Logger = getLogger(this::class.java)
 
     @Autowired
@@ -27,10 +32,10 @@ class RedisRunner : CommandLineRunner {
         log.info("测试CommandLineRunner")
 
         log.info("测试redis写入")
-        redisTemplate.opsForValue().set("user", User(123, "test", 99.9))
+        redisTemplate.opsForValue().set(KEY, VALUE)
 
         log.info("测试redis读出")
-        val user = redisTemplate.opsForValue().get("user") as User
+        val user = redisTemplate.opsForValue().get(KEY) as User
         log.info("get from redis : $user")
     }
 }

@@ -2,8 +2,8 @@ package org.iproute.examples.kotlin.controller
 
 import com.baomidou.mybatisplus.extension.kotlin.KtQueryWrapper
 import org.iproute.examples.kotlin.config.getLogger
-import org.iproute.examples.kotlin.entities.po.BenchmarksAuto
-import org.iproute.examples.kotlin.entities.po.BenchmarksFlow
+import org.iproute.examples.kotlin.entities.po.AutoIncrementTable
+import org.iproute.examples.kotlin.entities.po.SnowFlakeTable
 import org.iproute.examples.kotlin.mapper.BenchmarksAutoMapper
 import org.iproute.examples.kotlin.mapper.BenchmarksFlowMapper
 import org.slf4j.Logger
@@ -36,7 +36,7 @@ class BenchmarksController(
 
         repeat(count) {
             benchmarksAutoMapper.insert(
-                BenchmarksAuto(data = UUID.randomUUID().toString() + it)
+                AutoIncrementTable(data = UUID.randomUUID().toString() + it)
             )
         }
 
@@ -53,7 +53,7 @@ class BenchmarksController(
 
         repeat(count) {
             benchmarksFlowMapper.insert(
-                BenchmarksFlow(data = UUID.randomUUID().toString() + it)
+                SnowFlakeTable(data = UUID.randomUUID().toString() + it)
             )
         }
 
@@ -65,16 +65,16 @@ class BenchmarksController(
 
     @GetMapping("/query/auto")
     fun queryAuto(): String {
-        val start: KtQueryWrapper<BenchmarksAuto> = KtQueryWrapper(BenchmarksAuto::class.java)
+        val start: KtQueryWrapper<AutoIncrementTable> = KtQueryWrapper(AutoIncrementTable::class.java)
             .apply(false, "limit 0,25000")
         val startList = benchmarksAutoMapper.selectList(start)
-        val end: KtQueryWrapper<BenchmarksAuto> = KtQueryWrapper(BenchmarksAuto::class.java)
+        val end: KtQueryWrapper<AutoIncrementTable> = KtQueryWrapper(AutoIncrementTable::class.java)
             .apply(false, "limit 175000,25000")
         val endList = benchmarksAutoMapper.selectList(end)
 
         startList.addAll(endList)
 
-        val idList = startList.stream().map(BenchmarksAuto::id)
+        val idList = startList.stream().map(AutoIncrementTable::id)
             .collect(Collectors.toList())
 
         idList.shuffle()
@@ -92,16 +92,16 @@ class BenchmarksController(
 
     @GetMapping("/query/flow")
     fun queryFlow(): String {
-        val start: KtQueryWrapper<BenchmarksFlow> = KtQueryWrapper(BenchmarksFlow::class.java)
+        val start: KtQueryWrapper<SnowFlakeTable> = KtQueryWrapper(SnowFlakeTable::class.java)
             .apply(false, "limit 0,25000")
         val startList = benchmarksFlowMapper.selectList(start)
-        val end: KtQueryWrapper<BenchmarksFlow> = KtQueryWrapper(BenchmarksFlow::class.java)
+        val end: KtQueryWrapper<SnowFlakeTable> = KtQueryWrapper(SnowFlakeTable::class.java)
             .apply(false, "limit 175000,25000")
         val endList = benchmarksFlowMapper.selectList(end)
 
         startList.addAll(endList)
 
-        val idList = startList.stream().map(BenchmarksFlow::id)
+        val idList = startList.stream().map(SnowFlakeTable::id)
             .collect(Collectors.toList())
 
         idList.shuffle()

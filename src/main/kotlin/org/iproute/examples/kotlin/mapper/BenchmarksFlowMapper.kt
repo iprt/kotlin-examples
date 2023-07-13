@@ -2,7 +2,7 @@ package org.iproute.examples.kotlin.mapper
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper
 import org.apache.ibatis.annotations.Mapper
-import org.iproute.examples.kotlin.entities.po.BenchmarksFlow
+import org.iproute.examples.kotlin.entities.po.SnowFlakeTable
 import org.springframework.stereotype.Repository
 
 /**
@@ -13,4 +13,4 @@ import org.springframework.stereotype.Repository
  */
 @Repository
 @Mapper
-interface BenchmarksFlowMapper : BaseMapper<BenchmarksFlow>
+interface BenchmarksFlowMapper : BaseMapper<SnowFlakeTable>
