@@ -3,6 +3,7 @@ package org.iproute.examples.kotlin.mqtt
 import org.springframework.integration.annotation.MessagingGateway
 import org.springframework.integration.mqtt.support.MqttHeaders
 import org.springframework.messaging.handler.annotation.Header
+import org.springframework.stereotype.Component
 
 /**
  * Mqtt publisher
@@ -10,6 +11,7 @@ import org.springframework.messaging.handler.annotation.Header
  * @constructor Create empty Mqtt publisher
  */
 @MessagingGateway(defaultRequestChannel = CHANNEL_NAME_OUT)
+@Component
 interface MqttGateway {
 
     /**

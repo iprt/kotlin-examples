@@ -1,7 +1,7 @@
 package org.iproute.examples.kotlin.service.impl
 
-import org.iproute.examples.kotlin.service.MqttTestService
 import org.iproute.examples.kotlin.mqtt.MqttGateway
+import org.iproute.examples.kotlin.service.MqttTestService
 import org.springframework.stereotype.Service
 
 /**
@@ -14,9 +14,6 @@ import org.springframework.stereotype.Service
 class MqttTestServiceImpl(
     private val mqttGateway: MqttGateway
 ) : MqttTestService {
-
-//    @Autowired
-//    private lateinit var mqttPublisher: MqttPublisher
 
     override fun publishToDefaultTopic(msg: String): Boolean {
         mqttGateway.sendToMqtt(msg)
