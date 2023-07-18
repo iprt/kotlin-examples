@@ -20,9 +20,7 @@ class MybatisConfig {
      * @return
      */
     @Bean
-    fun mybatisPlusInterceptor(): MybatisPlusInterceptor {
-        return MybatisPlusInterceptor().apply {
-            this.addInnerInterceptor(PaginationInnerInterceptor(DbType.MYSQL))
-        }
+    fun mybatisPlusInterceptor(): MybatisPlusInterceptor = MybatisPlusInterceptor().apply {
+        this.addInnerInterceptor(PaginationInnerInterceptor(DbType.MYSQL))
     }
 }
