@@ -2,6 +2,7 @@ package org.iproute.examples.kotlin.controller
 
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.runBlocking
+import org.iproute.examples.kotlin.config.getLogger
 import org.iproute.examples.kotlin.service.CoroutinesService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.GetMapping
@@ -9,16 +10,18 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 /**
- * CoroutinesExampleController
+ * CoroutinesController
  *
  * @author zhuzhenjie
- * @since 2023/7/17
+ * @since 2023/7/24
  */
-@RestController
 @RequestMapping("/coroutines")
-class CoroutinesExampleController(
+@RestController
+class CoroutinesController(
     private val dispatcher: CoroutineDispatcher
 ) {
+
+    private val log = getLogger(this::class.java)
 
     // https://stackoverflow.com/questions/58558802/spring-boot-rest-service-with-kotlin-coroutines
     // private val dispatcher = Executors.newFixedThreadPool(5, DispatcherThreadFactory()).asCoroutineDispatcher()
@@ -33,6 +36,8 @@ class CoroutinesExampleController(
      */
     @GetMapping("/sum")
     fun sum(): String = runBlocking(dispatcher) {
+        log.info("当前线程为: ${Thread.currentThread().name}")
+
         "Sum: ${coroutinesService.sumTwo()}"
     }
 
