@@ -2,7 +2,7 @@
     <!--  统一的日志配置 -->
 
 
-    <property name="LOG_FOLDER" value="./logs/kotlin-examples"/>
+    <property name="LOG_FOLDER" value="./logs"/>
     <property name="LOG_FILENAME" value="kotlin-examples"/>
 
     <!--  base config  -->
@@ -19,8 +19,9 @@
     <!-- %15.15t -> %30.30t  -->
 
     <!--  控制台输出  -->
-    <!--    <property name="CONSOLE_LOG_PATTERN"-->
-    <!--              value="${CONSOLE_LOG_PATTERN:-%clr(%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(-&#45;&#45;){faint} %clr([%30.30t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>-->
+    <property name="CONSOLE_LOG_PATTERN_CLASSIC"
+              value="${CONSOLE_LOG_PATTERN:-%clr(%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%30.30t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
+
     <property name="CONSOLE_LOG_PATTERN"
               value="${CONSOLE_LOG_PATTERN:-%clr(%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
 
@@ -90,9 +91,10 @@
     <logger name="org.mybatis.spring" level="warn"/>
     <logger name="org.hibernate" level="info"/>
 
-    <logger name="org.iproute" level="info"/>
 
-    <logger name="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" level="trace"/>
+    <!--    <logger name="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" level="trace"/>-->
+
+    <logger name="org.iproute" level="info"/>
 
     <root level="info">
         <appender-ref ref="CONSOLE"/>
