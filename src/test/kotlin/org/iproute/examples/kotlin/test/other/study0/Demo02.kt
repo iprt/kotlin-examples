@@ -17,7 +17,7 @@ fun sum2(a: Int, b: Int): Unit {
     println("sum2 ===> $a + $b = ${a + b}")
 }
 
-//Unit 返回类型可以省略：
+// Unit 返回类型可以省略：
 fun sum3(a: Int, b: Int) {
     println("sum3 ===> $a + $b = ${a + b}")
 }

@@ -25,10 +25,9 @@ fun main() {
 
     println("kotlin 的 lambda 表达式")
     items.filter { it.startsWith("a") }
-            .sortedBy { it }
-            .map { it.toUpperCase() }
-            .forEach { println(it) }
-
+        .sortedBy { it }
+        .map { it.toUpperCase() }
+        .forEach { println(it) }
 
 
 }
