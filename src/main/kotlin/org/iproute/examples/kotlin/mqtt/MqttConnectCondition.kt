@@ -5,6 +5,7 @@ import org.slf4j.Logger
 import org.springframework.context.annotation.Condition
 import org.springframework.context.annotation.ConditionContext
 import org.springframework.core.type.AnnotatedTypeMetadata
+import org.springframework.core.type.AnnotationMetadata
 import java.net.Socket
 
 /**
@@ -51,6 +52,8 @@ class MqttConnectCondition {
 
     class Publish : Condition {
         override fun matches(context: ConditionContext, annotatedTypeMetadata: AnnotatedTypeMetadata): Boolean {
+            log.info("publish condition in ${(annotatedTypeMetadata as? AnnotationMetadata)?.className}")
+
             val publishBroker =
                 context.environment.getProperty("spring.mqtt.publish.broker") ?: return false
 
@@ -71,6 +74,8 @@ class MqttConnectCondition {
 
     class Subscribe : Condition {
         override fun matches(context: ConditionContext, annotatedTypeMetadata: AnnotatedTypeMetadata): Boolean {
+            log.info("subscribe condition in ${(annotatedTypeMetadata as? AnnotationMetadata)?.className}")
+
             val subscribeBroker =
                 context.environment.getProperty("spring.mqtt.subscribe.broker") ?: return false
 
