@@ -6,9 +6,9 @@
     <conversionRule conversionWord="wEx"
                     converterClass="org.springframework.boot.logging.logback.ExtendedWhitespaceThrowableProxyConverter"/>
     <property name="CONSOLE_LOG_PATTERN"
-              value="${CONSOLE_LOG_PATTERN:-%clr(%d{${LOG_DATEFORMAT_PATTERN:-HH:mm:ss.SSS}}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
+              value="${CONSOLE_LOG_PATTERN:-%clr(%d{${LOG_DATEFORMAT_PATTERN:-HH:mm:ss.SSS}}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr([%20.20t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
     <property name="FILE_LOG_PATTERN"
-              value="${FILE_LOG_PATTERN:-%d{${LOG_DATEFORMAT_PATTERN:-HH:mm:ss.SSS}} ${LOG_LEVEL_PATTERN:-%5p} [%15.15t] %-40.40logger{39} : %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
+              value="${FILE_LOG_PATTERN:-%d{${LOG_DATEFORMAT_PATTERN:-HH:mm:ss.SSS}} ${LOG_LEVEL_PATTERN:-%5p} [%20.20t] %-40.40logger{39} : %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
 
     <logger name="org.apache.catalina.startup.DigesterFactory" level="ERROR"/>
     <logger name="org.apache.catalina.util.LifecycleBase" level="ERROR"/>
@@ -19,6 +19,11 @@
     <logger name="org.hibernate.validator.internal.util.Version" level="WARN"/>
     <logger name="org.springframework.boot.actuate.endpoint.jmx" level="WARN"/>
 
+    <springProperty scop="context" name="spring.application.name" source="spring.application.name"
+                    defaultValue="application"/>
+    <property name="log.path" value="./logs"/>
+    <property name="log.name" value="${spring.application.name}"/>
+
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>
@@ -28,7 +33,7 @@
     </appender>
 
     <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>./logs/kotlin.log</file>
+        <file>${log.path}/${log.name}.log</file>
         <append>true</append>
         <encoder>
             <pattern>${FILE_LOG_PATTERN}</pattern>
@@ -36,7 +41,7 @@
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <fileNamePattern>
-                ./logs/kotlin-%d{yyyy-MM-dd}.%i.log
+                ${log.path}/${log.name}-%d{yyyy-MM-dd}.%i.log
             </fileNamePattern>
             <maxHistory>180</maxHistory>
             <maxFileSize>20MB</maxFileSize>
@@ -47,7 +52,7 @@
     </appender>
 
     <appender name="errorFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>./logs/kotlin-error.log</file>
+        <file>${log.path}/${log.name}-error.log</file>
         <append>true</append>
         <encoder>
             <pattern>${FILE_LOG_PATTERN}</pattern>
@@ -55,7 +60,7 @@
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <fileNamePattern>
-                ./logs/kotlin-error-%d{yyyy-MM-dd}.%i.log
+                ${log.path}/${log.name}-error-%d{yyyy-MM-dd}.%i.log
             </fileNamePattern>
             <maxHistory>180</maxHistory>
             <maxFileSize>20MB</maxFileSize>
@@ -67,7 +72,7 @@
 
     <!--
     <appender name="sql" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>./logs/kotlin-sql.log</file>
+        <file>${log.path}/${log.name}-sql.log</file>
         <append>true</append>
         <encoder>
             <pattern>${FILE_LOG_PATTERN}</pattern>
@@ -75,7 +80,7 @@
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <fileNamePattern>
-                ./logs/ProjectManager-sql-%d{yyyy-MM-dd}.%i.log
+                ${log.path}/${log.name}-sql-%d{yyyy-MM-dd}.%i.log
             </fileNamePattern>
             <maxHistory>180</maxHistory>
             <maxFileSize>20MB</maxFileSize>
