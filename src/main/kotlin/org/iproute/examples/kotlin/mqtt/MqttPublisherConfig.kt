@@ -4,6 +4,7 @@ import org.apache.commons.lang3.StringUtils
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.context.annotation.Bean
+import org.springframework.context.annotation.Conditional
 import org.springframework.context.annotation.Configuration
 import org.springframework.integration.annotation.ServiceActivator
 import org.springframework.integration.channel.DirectChannel
@@ -20,6 +21,7 @@ import org.springframework.messaging.MessageHandler
  * @since 2021/12/27
  */
 @Configuration
+@Conditional(MqttConnectCondition.Publish::class)
 class MqttPublisherConfig(
     private val mqttPublishProperties: MqttPublishProperties
 ) {

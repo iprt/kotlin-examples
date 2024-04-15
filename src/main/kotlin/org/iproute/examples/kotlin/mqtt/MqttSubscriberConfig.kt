@@ -4,6 +4,7 @@ import org.apache.commons.lang3.StringUtils
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions
 import org.iproute.examples.kotlin.config.getLogger
 import org.springframework.context.annotation.Bean
+import org.springframework.context.annotation.Conditional
 import org.springframework.context.annotation.Configuration
 import org.springframework.integration.annotation.ServiceActivator
 import org.springframework.integration.channel.DirectChannel
@@ -22,6 +23,7 @@ import org.springframework.messaging.MessageHandler
  * @constructor Create empty Mqtt subscriber config
  */
 @Configuration
+@Conditional(MqttConnectCondition.Subscribe::class)
 class MqttSubscriberConfig(
     private val mqttSubscribeProperties: MqttSubscribeProperties
 ) {

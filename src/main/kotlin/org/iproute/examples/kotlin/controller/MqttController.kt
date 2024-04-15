@@ -4,7 +4,9 @@ import org.iproute.examples.kotlin.entities.dto.A
 import org.iproute.examples.kotlin.entities.dto.B
 import org.iproute.examples.kotlin.entities.dto.C
 import org.iproute.examples.kotlin.entities.dto.MqttMsgDto
+import org.iproute.examples.kotlin.mqtt.MqttConnectCondition
 import org.iproute.examples.kotlin.service.MqttTestService
+import org.springframework.context.annotation.Conditional
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController
  */
 @RestController
 @RequestMapping("/mqtt")
+@Conditional(MqttConnectCondition.Publish::class)
 class MqttController(
     private val mqttTestService: MqttTestService
 ) {

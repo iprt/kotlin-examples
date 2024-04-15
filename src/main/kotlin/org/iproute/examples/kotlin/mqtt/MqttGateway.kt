@@ -1,5 +1,6 @@
 package org.iproute.examples.kotlin.mqtt
 
+import org.springframework.context.annotation.Conditional
 import org.springframework.integration.annotation.MessagingGateway
 import org.springframework.integration.mqtt.support.MqttHeaders
 import org.springframework.messaging.handler.annotation.Header
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Component
  * @constructor Create empty Mqtt publisher
  */
 @MessagingGateway(defaultRequestChannel = CHANNEL_NAME_OUT)
+@Conditional(MqttConnectCondition.Publish::class)
 @Component
 interface MqttGateway {
 

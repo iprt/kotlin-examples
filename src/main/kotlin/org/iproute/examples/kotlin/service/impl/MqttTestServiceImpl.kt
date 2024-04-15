@@ -1,7 +1,9 @@
 package org.iproute.examples.kotlin.service.impl
 
+import org.iproute.examples.kotlin.mqtt.MqttConnectCondition
 import org.iproute.examples.kotlin.mqtt.MqttGateway
 import org.iproute.examples.kotlin.service.MqttTestService
+import org.springframework.context.annotation.Conditional
 import org.springframework.stereotype.Service
 
 /**
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Service
  * @author zhuzhenjie
  * @since 2021/12/28
  */
+@Conditional(MqttConnectCondition.Publish::class)
 @Service
 class MqttTestServiceImpl(
     private val mqttGateway: MqttGateway
