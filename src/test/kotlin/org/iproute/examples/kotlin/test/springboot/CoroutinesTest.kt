@@ -8,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest
 /**
  * CoroutinesTest
  *
- * @author zhuzhenjie
+ * @author tech@intellij.io
  * @since 2023/7/26
  */
 @SpringBootTest

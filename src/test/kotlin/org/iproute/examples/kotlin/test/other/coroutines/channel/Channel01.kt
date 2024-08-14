@@ -8,7 +8,7 @@ import kotlinx.coroutines.runBlocking
 /**
  * Channel01
  *
- * @author zhuzhenjie
+ * @author tech@intellij.io
  * @since 2023/7/3
  */
 fun main() {

@@ -3,7 +3,7 @@ package org.iproute.examples.kotlin.test.other.operator
 /**
  * OperatorTest
  *
- * @author zhuzhenjie
+ * @author tech@intellij.io
  */
 data class Point(val x: Int, val y: Int)
 

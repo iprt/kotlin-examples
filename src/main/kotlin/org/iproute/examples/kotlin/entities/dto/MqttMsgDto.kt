@@ -6,7 +6,7 @@ import javax.validation.constraints.NotNull
 /**
  * MqttMsgDto
  *
- * @author zhuzhenjie
+ * @author tech@intellij.io
  * @since 2021/12/28
  */
 data class MqttMsgDto(
@@ -23,5 +23,3 @@ data class MqttMsgDto(
 interface A
 interface B
 interface C
-
-

@@ -3,7 +3,7 @@ package org.iproute.examples.kotlin.test.other.study0
 /**
  * 使用区间
  *
- * @author zhuzhenjie
+ * @author tech@intellij.io
  * @since 2021/1/3
  */
 

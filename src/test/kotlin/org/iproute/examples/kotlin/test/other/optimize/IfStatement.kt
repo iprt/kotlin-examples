@@ -1,7 +1,7 @@
 package org.iproute.examples.kotlin.test.other.optimize
 
 /**
- * @author zhuzhenjie
+ * @author tech@intellij.io
  * @since 2021/1/27
  */
 

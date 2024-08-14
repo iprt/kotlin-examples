@@ -11,7 +11,7 @@ import java.net.Socket
 /**
  * MqttConnectCondition
  *
- * @author zhuzhenjie
+ * @author tech@intellij.io
  */
 class MqttConnectCondition {
 

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController
 /**
  * CoroutinesController
  *
- * @author zhuzhenjie
+ * @author tech@intellij.io
  * @since 2023/7/24
  */
 @RequestMapping("/coroutines")

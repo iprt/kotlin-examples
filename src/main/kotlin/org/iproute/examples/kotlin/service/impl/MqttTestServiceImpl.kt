@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service
 /**
  * MqttTestServiceImpl
  *
- * @author zhuzhenjie
+ * @author tech@intellij.io
  * @since 2021/12/28
  */
 @Conditional(MqttConnectCondition.Publish::class)

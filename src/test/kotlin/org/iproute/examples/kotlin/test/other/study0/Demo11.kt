@@ -3,7 +3,7 @@ package org.iproute.examples.kotlin.test.other.study0
 /**
  * Demo11
  *
- * @author zhuzhenjie
+ * @author tech@intellij.io
  */
 
 data class Bean(var name: String, var age: Int)
@@ -14,6 +14,18 @@ operator fun Point.plus(o: Point): Point {
     val x = this.x + o.x
     val y = this.y - o.y
     return Point(x, y)
+}
+
+open class Animal(val name: String) {
+    open fun eat() {
+        println("Eating...")
+    }
+}
+
+class Dog(name: String) : Animal(name) {
+    override fun eat() {
+        println("${this.name} Dog eating...")
+    }
 }
 
 fun main() {
@@ -38,4 +50,11 @@ fun main() {
     val p2 = Point(2, 2)
 
     println(p1 + p2)
+
+    println()
+
+    val animal: Animal = Dog("Buddy")
+    animal.eat()
+
 }
+

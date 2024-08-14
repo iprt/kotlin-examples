@@ -9,7 +9,7 @@ import kotlinx.coroutines.runBlocking
 /**
  * Demo07_flow2
  *
- * @author zhuzhenjie
+ * @author tech@intellij.io
  * @since 2023/7/3
  */
 

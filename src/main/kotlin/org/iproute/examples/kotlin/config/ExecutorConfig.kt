@@ -13,7 +13,7 @@ import java.util.concurrent.atomic.AtomicInteger
 /**
  * ExecutorConfig
  *
- * @author zhuzhenjie
+ * @author tech@intellij.io
  * @since 2023/7/18
  */
 @Configuration

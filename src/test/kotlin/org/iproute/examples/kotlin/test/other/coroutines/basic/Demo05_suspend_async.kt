@@ -8,7 +8,7 @@ import kotlin.system.measureTimeMillis
 /**
  * Demo05_suspend_async
  *
- * @author zhuzhenjie
+ * @author tech@intellij.io
  * @since 2023/7/3
  */
 fun main() = runBlocking {

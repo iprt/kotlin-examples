@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service
 /**
  * CoroutinesService 协程示例类
  *
- * @author zhuzhenjie
+ * @author tech@intellij.io
  * @since 2023/7/17
  */
 @Service

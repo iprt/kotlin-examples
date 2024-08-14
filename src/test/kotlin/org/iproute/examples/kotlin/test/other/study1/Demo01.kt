@@ -2,7 +2,7 @@ package org.iproute.examples.kotlin.test.other.study1
 
 /**
  * 类与继承
- * @author zhuzhenjie
+ * @author tech@intellij.io
  * @since 2021/1/5
  */
 

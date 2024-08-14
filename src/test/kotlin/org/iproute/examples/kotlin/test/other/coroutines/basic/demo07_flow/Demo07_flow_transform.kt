@@ -9,7 +9,7 @@ import org.iproute.examples.kotlin.test.other.coroutines.basic.demo07_flow.Demo0
 /**
  * Demo07_flow_map
  *
- * @author zhuzhenjie
+ * @author tech@intellij.io
  * @since 2023/7/4
  */
 fun main() = runBlocking {

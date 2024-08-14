@@ -23,7 +23,7 @@ import java.nio.charset.StandardCharsets
 /**
  * RedisConfig
  *
- * @author zhuzhenjie
+ * @author tech@intellij.io
  * @since 2023/7/4
  */
 /**

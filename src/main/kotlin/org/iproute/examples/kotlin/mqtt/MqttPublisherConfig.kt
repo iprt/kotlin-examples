@@ -17,7 +17,7 @@ import org.springframework.messaging.MessageHandler
 /**
  * MqttPublishConfig
  *
- * @author zhuzhenjie
+ * @author tech@intellij.io
  * @since 2021/12/27
  */
 @Configuration

@@ -8,7 +8,7 @@ import kotlinx.coroutines.runBlocking
 /**
  * Demo07_map_reduce
  *
- * @author zhuzhenjie
+ * @author tech@intellij.io
  * @since 2023/7/4
  */
 fun main() = runBlocking {

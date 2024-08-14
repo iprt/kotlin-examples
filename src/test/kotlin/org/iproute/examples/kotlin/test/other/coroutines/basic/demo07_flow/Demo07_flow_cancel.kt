@@ -10,7 +10,7 @@ import kotlinx.coroutines.withTimeoutOrNull
 /**
  * Demo07_flow_cancel
  *
- * @author zhuzhenjie
+ * @author tech@intellij.io
  * @since 2023/7/4
  */
 fun main() = runBlocking {

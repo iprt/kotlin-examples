@@ -1,7 +1,7 @@
 package org.iproute.examples.kotlin.test.other.study0
 
 /**
- * @author zhuzhenjie
+ * @author tech@intellij.io
  * @since 2020/12/29
  */
 // is 用法
