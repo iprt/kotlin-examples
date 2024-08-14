@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.iproute.examples.kotlin.mapper.StudentWithAddressMapper">
+<mapper namespace="io.intellij.examples.kotlin.mapper.StudentWithAddressMapper">
 
-    <resultMap id="StudentWithAddress" type="org.iproute.examples.kotlin.entities.po.StudentWithAddress">
+    <resultMap id="StudentWithAddress" type="io.intellij.examples.kotlin.entities.po.StudentWithAddress">
         <id column="id" property="id" jdbcType="BIGINT" javaType="java.lang.Long"/>
         <result column="name" property="name"/>
         <result column="info" property="info"
@@ -10,7 +10,8 @@
     </resultMap>
 
     <select id="pageList" resultMap="StudentWithAddress">
-        SELECT `id`, `name`, `info`
-        FROM student
+        select `id`, `name`, `info`
+        from student
     </select>
+
 </mapper>

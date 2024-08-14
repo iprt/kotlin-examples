@@ -1,11 +1,9 @@
 server:
-  port: 8090
+  port: 8080
 
 spring:
   application:
     name: kotlin
-  mvc:
-    throw-exception-if-no-handler-found: true
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
@@ -14,30 +12,33 @@ spring:
     url: jdbc:mysql://172.100.1.100:3306/kotlin?characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false&allowMultiQueries=true&useSSL=false&serverTimezone=Asia/Shanghai
     username: root
     password: root
-  redis:
-    host: 172.100.1.100
-    port: 6379
-    password: root
-    database: 15
-    lettuce:
-      pool:
-        max-active: 8
-        max-wait: -1
-        max-idle: 8
-        min-idle: 0
+  data:
+    redis:
+      host: 172.100.1.100
+      port: 6379
+      password: root
+      database: 15
+      lettuce:
+        pool:
+          max-active: 8
+          # 连接分配应该阻塞的最大时间
+          max-wait: 5000
+          max-idle: 8
+          min-idle: 0
+
   # mqtt config
   mqtt:
     publish:
       broker: tcp://172.100.1.100:1883
       username: username
       password: password
-      clientId: publish
+      clientId: kotlin-example-publish
       defaultTopic: /topic/default
     subscribe:
       broker: tcp://172.100.1.100:1883
       username: username
       password: password
-      clientId: subscribe
+      clientId: kotlin-example-subscribe
       topics:
         - /topic/default
         - /hello/world
@@ -53,4 +54,4 @@ jasypt:
 logging:
   level:
     # mapper 日志输出
-    org.iproute.examples.kotlin.mapper: debug
+    io.intellij.examples.kotlin.mapper: debug
