@@ -47,7 +47,7 @@
             <maxFileSize>20MB</maxFileSize>
         </rollingPolicy>
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-            <level>DEBUG</level>
+            <level>INFO</level>
         </filter>
     </appender>
 

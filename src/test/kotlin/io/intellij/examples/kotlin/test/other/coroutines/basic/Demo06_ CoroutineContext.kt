@@ -1,4 +1,4 @@
-package org.iproute.examples.kotlin.test.other.coroutines.basic.Demo06_CoroutineContext.kt
+package io.intellij.examples.kotlin.test.other.coroutines.basic.Demo06_CoroutineContext.kt
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

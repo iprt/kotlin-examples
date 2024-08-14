@@ -1,4 +1,4 @@
-package org.iproute.examples.kotlin.test.other.coroutines.basic.Demo02.kt
+package io.intellij.examples.kotlin.test.other.coroutines.basic.Demo02.kt
 
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay

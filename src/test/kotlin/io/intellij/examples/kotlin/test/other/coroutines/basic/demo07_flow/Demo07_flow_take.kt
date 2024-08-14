@@ -1,7 +1,6 @@
-package org.iproute.examples.kotlin.test.other.coroutines.basic.demo07_flow.Demo07_flow_take.kt
+package io.intellij.examples.kotlin.test.other.coroutines.basic.demo07_flow.Demo07_flow_take.kt
 
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.take
 import kotlinx.coroutines.runBlocking

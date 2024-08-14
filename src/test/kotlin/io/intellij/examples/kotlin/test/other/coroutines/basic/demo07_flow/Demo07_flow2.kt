@@ -1,8 +1,7 @@
-package org.iproute.examples.kotlin.test.other.coroutines.basic.demo07_flow.Demo07_flow2.kt
+package io.intellij.examples.kotlin.test.other.coroutines.basic.demo07_flow.Demo07_flow2.kt
 
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.runBlocking
 

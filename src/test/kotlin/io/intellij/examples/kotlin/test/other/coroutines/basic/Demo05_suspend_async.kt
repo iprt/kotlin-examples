@@ -1,4 +1,4 @@
-package org.iproute.examples.kotlin.test.other.coroutines.basic.Demo05_suspend_async.kt
+package io.intellij.examples.kotlin.test.other.coroutines.basic.Demo05_suspend_async.kt
 
 import kotlinx.coroutines.async
 import kotlinx.coroutines.delay

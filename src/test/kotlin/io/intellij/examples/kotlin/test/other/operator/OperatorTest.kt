@@ -13,7 +13,7 @@ operator fun Point.unaryMinus() = Point(-x, -y)
 data class People(val age: Int, val name: String)
 
 /**
- * 重载 > <
+ * 重载 大于 > 小于 >
  *
  * @param other
  * @return

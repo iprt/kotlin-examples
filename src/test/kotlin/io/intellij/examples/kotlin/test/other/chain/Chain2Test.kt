@@ -1,4 +1,4 @@
-package org.iproute.examples.kotlin.test.other.chain.Chain2Test.kt
+package io.intellij.examples.kotlin.test.other.chain.Chain2Test.kt
 
 import org.junit.jupiter.api.Test
 
