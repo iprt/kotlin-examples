@@ -12,6 +12,8 @@ spring:
     url: jdbc:mysql://172.100.1.100:3306/kotlin?characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false&allowMultiQueries=true&useSSL=false&serverTimezone=Asia/Shanghai
     username: root
     password: root
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.yaml
   data:
     redis:
       host: 172.100.1.100
@@ -53,5 +55,5 @@ jasypt:
 
 logging:
   level:
-    # mapper 日志输出
+    org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping: trace
     io.intellij.examples.kotlin.mapper: debug

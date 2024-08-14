@@ -44,6 +44,9 @@ dependencies {
     }
     implementation("org.mybatis:mybatis-spring:3.0.4")
 
+    // liquibase
+    implementation("org.liquibase:liquibase-core:4.29.1")
+
     implementation("com.mysql:mysql-connector-j")
 
     // kotlin
