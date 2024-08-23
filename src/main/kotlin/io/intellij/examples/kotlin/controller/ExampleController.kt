@@ -1,6 +1,7 @@
 package io.intellij.examples.kotlin.controller
 
 import io.intellij.examples.kotlin.entities.po.User
+import io.intellij.examples.kotlin.entities.po.UserDetail
 import io.intellij.examples.kotlin.funcs.getLogger
 import jakarta.servlet.http.HttpServletRequest
 import org.slf4j.Logger
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
+import java.util.*
 
 /**
  * Example controller
@@ -85,7 +87,8 @@ class ExampleController {
     private fun copy(user: User): (String) -> User {
         val userOther = User(
             id = user.id ?: (123 + 3306),
-            grade = user.grade ?: (100.0 + 99)
+            grade = user.grade ?: (100.0 + 99),
+            userDetail = UserDetail(".", Date(), Date())
         )
         // 返回产生一个user的函数
         return fun(name: String): User = user.apply {

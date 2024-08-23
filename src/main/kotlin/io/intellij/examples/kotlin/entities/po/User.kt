@@ -1,6 +1,7 @@
 package io.intellij.examples.kotlin.entities.po
 
 import java.io.Serializable
+import java.util.*
 
 /**
  * 用户类
@@ -11,8 +12,15 @@ import java.io.Serializable
 data class User(
     var id: Long? = null,
     var name: String? = null,
-    var grade: Double? = null
+    var grade: Double? = null,
+    var userDetail: UserDetail? = null,
 ) : Serializable
+
+data class UserDetail(
+    var nickname: String? = null,
+    var createTime: Date? = null,
+    var updateTime: Date? = null,
+)
 
 /*
 常规写法 在对象初始化的时候有默认值

@@ -1,25 +1,24 @@
 package io.intellij.examples.kotlin.config.redis
 
-import com.alibaba.fastjson2.JSON
-import com.alibaba.fastjson2.JSONReader
-import com.alibaba.fastjson2.JSONWriter
-import org.springframework.boot.autoconfigure.condition.ConditionalOnClass
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
-import org.springframework.boot.autoconfigure.data.redis.RedisProperties
-import org.springframework.boot.context.properties.EnableConfigurationProperties
+import com.fasterxml.jackson.annotation.JsonAutoDetect
+import com.fasterxml.jackson.annotation.PropertyAccessor
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.databind.ObjectMapper.DefaultTyping
+import com.fasterxml.jackson.databind.jsontype.impl.LaissezFaireSubTypeValidator
 import org.springframework.cache.CacheManager
-import org.springframework.cache.annotation.CachingConfigurerSupport
+import org.springframework.cache.annotation.CachingConfigurer
 import org.springframework.cache.annotation.EnableCaching
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.data.redis.cache.RedisCacheConfiguration
 import org.springframework.data.redis.cache.RedisCacheManager
 import org.springframework.data.redis.connection.RedisConnectionFactory
-import org.springframework.data.redis.core.RedisOperations
 import org.springframework.data.redis.core.RedisTemplate
-import org.springframework.data.redis.serializer.RedisSerializer
-import org.springframework.data.redis.serializer.SerializationException
+import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer
+import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer
+import org.springframework.data.redis.serializer.RedisSerializationContext
 import org.springframework.data.redis.serializer.StringRedisSerializer
-import java.nio.charset.StandardCharsets
+import java.time.Duration
 
 /**
  * RedisConfig
@@ -28,96 +27,144 @@ import java.nio.charset.StandardCharsets
  */
 @EnableCaching
 @Configuration
-@ConditionalOnClass(RedisOperations::class)
-@EnableConfigurationProperties(RedisProperties::class)
-class RedisConfig : CachingConfigurerSupport() {
+class RedisConfig : CachingConfigurer {
 
-    /**
-     * Redis template
-     *
-     * @param redisConnectionFactory
-     * @return
-     */
-    @Bean(name = ["redisTemplate"])
-    @ConditionalOnMissingBean(name = ["redisTemplate"])
-    fun redisTemplate(redisConnectionFactory: RedisConnectionFactory): RedisTemplate<Any, Any> =
-        RedisTemplate<Any, Any>().apply {
-            val redisSerializer = FastJsonRedisSerializer(Any::class.java)
-
-            valueSerializer = redisSerializer
-            hashValueSerializer = redisSerializer
+    @Bean
+    fun redisTemplate(redisConnectionFactory: RedisConnectionFactory): RedisTemplate<String, Any> =
+        RedisTemplate<String, Any>().apply {
+            connectionFactory = redisConnectionFactory
 
             keySerializer = StringRedisSerializer()
-            hashKeySerializer = StringRedisSerializer()
-            setConnectionFactory(redisConnectionFactory)
+            hashValueSerializer = StringRedisSerializer()
+
+            // val objectMapper = ObjectMapper().apply {
+            //     // this(new ObjectMapper(), reader, writer, typeHintPropertyName);
+            //     registerModule(SimpleModule().apply {
+            //         addSerializer(NullValueSerializer())
+            //     })
+            //
+            //     // this.mapper.setDefaultTyping(createDefaultTypeResolverBuilder(getObjectMapper(), typeHintPropertyName));
+            //     setDefaultTyping(
+            //         TypeResolverBuilder.forEverything(this)
+            //             .init(JsonTypeInfo.Id.CLASS, null)
+            //             .inclusion(As.PROPERTY)
+            //             .typeProperty("null")
+            //     )
+            // }
+
+            valueSerializer = GenericJackson2JsonRedisSerializer()
+
         }
 
-    /**
-     * Cache manager
-     *
-     * @param redisConnectionFactory
-     * @return
-     */
     @Bean
-    fun cacheManager(redisConnectionFactory: RedisConnectionFactory): CacheManager {
-        return RedisCacheManager.RedisCacheManagerBuilder
-            .fromConnectionFactory(redisConnectionFactory)
-            .build()
-    }
+    fun cacheManager(redisConnectionFactory: RedisConnectionFactory): CacheManager =
+        RedisCacheManager.builder(redisConnectionFactory).cacheDefaults(
+            RedisCacheConfiguration.defaultCacheConfig()
+                .entryTtl(Duration.ofSeconds(600))
+                .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(StringRedisSerializer()))
+                .serializeValuesWith(
+                    RedisSerializationContext.SerializationPair.fromSerializer(
+                        Jackson2JsonRedisSerializer(ObjectMapper().apply {
+                            setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY)
+                            activateDefaultTyping(
+                                LaissezFaireSubTypeValidator.instance,
+                                DefaultTyping.NON_FINAL
+                            )
+                        }, Any::class.java)
+                    )
+                )
+                .disableCachingNullValues()
+        ).build()
 
 }
 
-/**
- * Fast json redis serializer
- *
- * @param T
- * @property clazz
- * @constructor Create empty Fast json redis serializer
- */
-class FastJsonRedisSerializer<T>(
-    private val clazz: Class<T>
-) : RedisSerializer<T> {
+/*
+
+class NullValueSerializer(
+    private var classIdentifier: String? = "@class" // 调用者可以传递 null
+) : StdSerializer<NullValue>(NullValue::class.java) {
 
     companion object {
-        val FEATURES = arrayOf(
-            JSONWriter.Feature.WriteClassName,
-            JSONWriter.Feature.FieldBased,
-            JSONWriter.Feature.ReferenceDetection,
-            JSONWriter.Feature.NotWriteDefaultValue,
-            JSONWriter.Feature.WriteNameAsSymbol,
-            JSONWriter.Feature.WriteEnumsUsingName
-        )
-
-        val AUTO_TYPE_FILTER = JSONReader.autoTypeFilter(
-            "com.",
-            "net.",
-            "org.",
-            "io.",
-            "java.", "javax.", "jakarta."
-        )!!
-
+        private const val serialVersionUID = 1999052150548658808L
     }
 
-    @Throws(SerializationException::class)
-    override fun serialize(t: T?) = if (null == t) {
-        ByteArray(0)
-    } else {
-        // JSON.toJSONString(t, JSONWriter.Feature.WriteClassName).toByteArray(StandardCharsets.UTF_8)
-        // 使用 * 运算符将数组展开
-        JSON.toJSONString(t, *FEATURES).toByteArray(StandardCharsets.UTF_8)
+    init {
+        // 如果传递的 classIdentifier 为空，则默认设置为 "@class"
+        if (!StringUtils.hasText(classIdentifier)) {
+            this.classIdentifier = "@class"
+        }
     }
 
-    @Throws(SerializationException::class)
-    override fun deserialize(bytes: ByteArray?): T? = if (null == bytes || bytes.isEmpty()) {
-        null
-    } else {
-        val str = String(bytes, StandardCharsets.UTF_8)
-        JSON.parseObject(
-            str, clazz, AUTO_TYPE_FILTER,
-            JSONReader.Feature.UseDefaultConstructorAsPossible,
-            JSONReader.Feature.UseNativeObject,
-            JSONReader.Feature.FieldBased
-        ) as T
+    @Throws(IOException::class)
+    override fun serialize(value: NullValue, jsonGenerator: JsonGenerator, provider: SerializerProvider) {
+        jsonGenerator.writeStartObject()
+        jsonGenerator.writeStringField(classIdentifier ?: "@class", NullValue::class.java.name)
+        jsonGenerator.writeEndObject()
     }
 
+    @Throws(IOException::class)
+    override fun serializeWithType(
+        value: NullValue, jsonGenerator: JsonGenerator, serializers: SerializerProvider, typeSerializer: TypeSerializer
+    ) {
+        serialize(value, jsonGenerator, serializers)
+    }
 }
+
+
+class TypeResolverBuilder(
+    typing: DefaultTyping, polymorphicTypeValidator: PolymorphicTypeValidator
+) : ObjectMapper.DefaultTypeResolverBuilder(typing, polymorphicTypeValidator) {
+
+    companion object {
+        fun forEverything(mapper: ObjectMapper): TypeResolverBuilder {
+            return TypeResolverBuilder(DefaultTyping.EVERYTHING, mapper.polymorphicTypeValidator)
+        }
+    }
+
+    override fun withDefaultImpl(defaultImpl: Class<*>?): ObjectMapper.DefaultTypeResolverBuilder {
+        return this
+    }
+
+    override fun useForType(javaType: JavaType): Boolean {
+
+        if (javaType.isJavaLangObject) {
+            return true
+        }
+
+        val resolvedType = resolveArrayOrWrapper(javaType)
+
+        if (resolvedType.isEnumType || ClassUtils.isPrimitiveOrWrapper(resolvedType.rawClass)) {
+            return false
+        }
+
+        if (resolvedType.isFinal && !KotlinDetector.isKotlinType(resolvedType.rawClass)
+            && resolvedType.rawClass.packageName.startsWith("java")
+        ) {
+            return false
+        }
+
+        return !TreeNode::class.java.isAssignableFrom(resolvedType.rawClass)
+    }
+
+    private fun resolveArrayOrWrapper(type: JavaType): JavaType {
+        var resultType = type
+
+        while (resultType.isArrayType) {
+            resultType = resultType.contentType
+            if (resultType.isReferenceType) {
+                resultType = resolveArrayOrWrapper(resultType)
+            }
+        }
+
+        while (resultType.isReferenceType) {
+            resultType = resultType.referencedType
+            if (resultType.isArrayType) {
+                resultType = resolveArrayOrWrapper(resultType)
+            }
+        }
+
+        return resultType
+    }
+}
+
+*/
