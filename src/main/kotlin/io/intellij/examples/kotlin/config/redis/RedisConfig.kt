@@ -37,20 +37,22 @@ class RedisConfig : CachingConfigurer {
             keySerializer = StringRedisSerializer()
             hashValueSerializer = StringRedisSerializer()
 
-            // val objectMapper = ObjectMapper().apply {
-            //     // this(new ObjectMapper(), reader, writer, typeHintPropertyName);
-            //     registerModule(SimpleModule().apply {
-            //         addSerializer(NullValueSerializer())
-            //     })
-            //
-            //     // this.mapper.setDefaultTyping(createDefaultTypeResolverBuilder(getObjectMapper(), typeHintPropertyName));
-            //     setDefaultTyping(
-            //         TypeResolverBuilder.forEverything(this)
-            //             .init(JsonTypeInfo.Id.CLASS, null)
-            //             .inclusion(As.PROPERTY)
-            //             .typeProperty("null")
-            //     )
-            // }
+            /*
+            val objectMapper = ObjectMapper().apply {
+                // this(new ObjectMapper(), reader, writer, typeHintPropertyName);
+                registerModule(SimpleModule().apply {
+                    addSerializer(NullValueSerializer())
+                })
+
+                // this.mapper.setDefaultTyping(createDefaultTypeResolverBuilder(getObjectMapper(), typeHintPropertyName));
+                setDefaultTyping(
+                    TypeResolverBuilder.forEverything(this)
+                        .init(JsonTypeInfo.Id.CLASS, null)
+                        .inclusion(As.PROPERTY)
+                        .typeProperty("null")
+                )
+            }
+            */
 
             valueSerializer = GenericJackson2JsonRedisSerializer()
 
