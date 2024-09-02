@@ -1,13 +1,14 @@
---liquibase formatted sql
+-- liquibase formatted sql
 
---changeset devops:student
+-- changeset devops:student
 drop table if exists student;
 create table student
 (
     `id`   bigint primary key comment '主键ID',
     `name` varchar(32) not null comment '名称',
     `info` json        not null comment '信息'
-) engine = InnoDB row_format = dynamic;
+) engine = InnoDB
+  row_format = dynamic;
 
 insert into student (`id`, `name`, `info`)
 values
@@ -20,20 +21,24 @@ values
       "lttd": 30.213
     }');
 
---changeset devops:benchmark_auto_increment
-drop table if exists benchmarks_auto;
-create table benchmarks_auto
+-- changeset devops:id_type_autoincrement
+drop table if exists id_type_autoincrement;
+create table id_type_autoincrement
 (
-    `id`   bigint      not null auto_increment comment 'id',
-    `data` varchar(50) not null comment 'data',
+    `id`        bigint      not null auto_increment comment 'id',
+    `data`      varchar(50) not null comment 'data',
+    `created_at` datetime    not null default current_timestamp,
     primary key (`id`)
-) engine = InnoDB row_format = dynamic;
+) engine = InnoDB
+  row_format = dynamic;
 
---changeset devops:benchmark_auto_snowflake
-drop table if exists benchmarks_flow;
-create table benchmarks_flow
+-- changeset devops:id_type_snowflake
+drop table if exists id_type_snowflake;
+create table id_type_snowflake
 (
-    `id`   bigint      not null comment 'id',
-    `data` varchar(50) not null comment 'data',
+    `id`        bigint      not null comment 'id',
+    `data`      varchar(50) not null comment 'data',
+    `created_at` datetime    not null default current_timestamp,
     primary key (`id`)
-) engine = InnoDB row_format = dynamic;
+) engine = InnoDB
+  row_format = dynamic;

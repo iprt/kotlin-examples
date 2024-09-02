@@ -1,0 +1,15 @@
+### 测试 autoincrement 插入
+http://127.0.0.1:8080/id-type/add/autoincrement/200000
+Accept: application/json
+
+### 测试 snowflake 插入
+http://127.0.0.1:8080/id-type/add/snowflake/200000
+Accept: application/json
+
+### 测试 autoincrement 查询
+http://127.0.0.1:8080/id-type/query/autoincrement
+Accept: application/json
+
+### 测试 snowflake 查询
+http://127.0.0.1:8080/id-type/query/snowflake
+Accept: application/json

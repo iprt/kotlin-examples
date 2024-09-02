@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController
  */
 @RestController
 @RequestMapping("/curd-examples")
-class StudentController(
+class StuController(
     val studentService: StudentService
 ) : CommandLineRunner {
     private val log: Logger = getLogger(this::class.java)

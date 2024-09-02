@@ -1,5 +1,5 @@
 ### 测试默认topic
-POST http://127.0.0.1:8090/mqtt/publishToDefaultTopic
+POST http://127.0.0.1:8080/mqtt/publishToDefaultTopic
 Accept: application/json
 Content-Type: application/json
 
@@ -8,7 +8,7 @@ Content-Type: application/json
 }
 
 ### withoutqos
-POST http://127.0.0.1:8090/mqtt/publishWithoutQos
+POST http://127.0.0.1:8080/mqtt/publishWithoutQos
 Accept: application/json
 Content-Type: application/json
 
@@ -18,7 +18,7 @@ Content-Type: application/json
 }
 
 ### withqos
-POST http://127.0.0.1:8090/mqtt/publishWithQos
+POST http://127.0.0.1:8080/mqtt/publishWithQos
 Accept: application/json
 Content-Type: application/json
 

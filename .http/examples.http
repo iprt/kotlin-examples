@@ -1,17 +1,17 @@
 ### hello
-GET http://127.0.0.1:8090/kotlin-examples/hello
+GET http://127.0.0.1:8080/kotlin-examples/hello
 Accept: application/json
 
 ### say hello
-GET http://127.0.0.1:8090/kotlin-examples/sayHello?name=Ray
+GET http://127.0.0.1:8080/kotlin-examples/sayHello?name=Ray
 Accept: application/json
 
 ### testHttpServletRequest
-GET http://127.0.0.1:8090/kotlin-examples/testHttpServletRequest
+GET http://127.0.0.1:8080/kotlin-examples/testHttpServletRequest
 Accept: application/json
 
 ### say hello by user
-POST http://127.0.0.1:8090/kotlin-examples/sayHelloByUser
+POST http://127.0.0.1:8080/kotlin-examples/sayHelloByUser
 Accept: application/json
 Content-Type: application/json
 
@@ -20,7 +20,7 @@ Content-Type: application/json
 }
 
 ### copy user
-POST http://127.0.0.1:8090/kotlin-examples/copyUser
+POST http://127.0.0.1:8080/kotlin-examples/copyUser
 Accept: application/json
 Content-Type: application/json
 

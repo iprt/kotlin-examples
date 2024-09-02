@@ -15,13 +15,13 @@ import java.util.concurrent.ThreadPoolExecutor
  * @since 2023/7/18
  */
 @Configuration
-class ExecutorConfig {
+class ThreadPoolConfig {
 
     companion object {
         const val CORE_POOL_SIZE = 4
         const val MAX_POOL_SIZE = 8
         const val QUEUE_CAPACITY = 20
-        const val THREAD_NAME_PREFIX = "dispatcher-async-"
+        const val THREAD_NAME_PREFIX = "async-"
     }
 
 

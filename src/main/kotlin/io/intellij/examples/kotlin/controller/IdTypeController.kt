@@ -4,9 +4,10 @@ import com.baomidou.mybatisplus.extension.kotlin.KtQueryWrapper
 import io.intellij.examples.kotlin.entities.po.AutoIncrementTable
 import io.intellij.examples.kotlin.entities.po.SnowFlakeTable
 import io.intellij.examples.kotlin.funcs.getLogger
-import io.intellij.examples.kotlin.mapper.BenchmarksAutoMapper
-import io.intellij.examples.kotlin.mapper.BenchmarksFlowMapper
+import io.intellij.examples.kotlin.mapper.IdTypeAutoMapper
+import io.intellij.examples.kotlin.mapper.IdTypeFlowMapper
 import org.slf4j.Logger
+import org.springframework.util.StopWatch
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
@@ -15,89 +16,87 @@ import java.util.*
 import java.util.stream.Collectors
 
 /**
- * BenchmarksController
+ * IdTypeController
  *
- * @author Jzz
+ * @author tech@intellij.io
  * @since 2021/7/19
  */
 @RestController
-@RequestMapping("/benchmarks")
-class BenchmarksController(
-    private val benchmarksAutoMapper: BenchmarksAutoMapper,
-    private val benchmarksFlowMapper: BenchmarksFlowMapper
+@RequestMapping("/id-type")
+class IdTypeController(
+    private val idTypeAutoMapper: IdTypeAutoMapper,
+    private val idTypeFlowMapper: IdTypeFlowMapper
 ) {
 
     private val log: Logger = getLogger(this::class.java)
 
-    @GetMapping("/add/auto/{count}")
+    @GetMapping("/add/autoincrement/{count}")
     fun addAuto(@PathVariable("count") count: Int): String {
-
-        val start = Date().time
-
+        val stopWatch = StopWatch()
+        stopWatch.start("addAuto")
         repeat(count) {
-            benchmarksAutoMapper.insert(
+            idTypeAutoMapper.insert(
                 AutoIncrementTable(data = UUID.randomUUID().toString() + it)
             )
         }
-
-        val end = Date().time
-
-        log.info("auto_increment cost ms = ${end - start}")
-        return "hello world"
+        stopWatch.stop()
+        log.info("auto_increment cost \n ${stopWatch.prettyPrint()}")
+        return "increment id insert"
     }
 
-    @GetMapping("/add/flow/{count}")
+    @GetMapping("/add/snowflake/{count}")
     fun addFlow(@PathVariable("count") count: Int): String {
-
-        val start = Date().time
-
+        val stopWatch = StopWatch()
+        stopWatch.start("addFlow")
         repeat(count) {
-            benchmarksFlowMapper.insert(
+            idTypeFlowMapper.insert(
                 SnowFlakeTable(data = UUID.randomUUID().toString() + it)
             )
         }
-
-        val end = Date().time
-        log.info("snowflake cost ms = ${end - start}")
-        return "hello world"
+        stopWatch.stop()
+        log.info("snowflake cost \n ${stopWatch.prettyPrint()}")
+        return "snowflake id insert"
     }
 
 
-    @GetMapping("/query/auto")
+    @GetMapping("/query/autoincrement")
     fun queryAuto(): String {
         val start: KtQueryWrapper<AutoIncrementTable> = KtQueryWrapper(AutoIncrementTable::class.java)
             .apply(false, "limit 0,25000")
-        val startList = benchmarksAutoMapper.selectList(start)
+        val startList = idTypeAutoMapper.selectList(start)
         val end: KtQueryWrapper<AutoIncrementTable> = KtQueryWrapper(AutoIncrementTable::class.java)
             .apply(false, "limit 175000,25000")
-        val endList = benchmarksAutoMapper.selectList(end)
+        val endList = idTypeAutoMapper.selectList(end)
 
         startList.addAll(endList)
 
         val idList = startList.stream().map(AutoIncrementTable::id)
             .collect(Collectors.toList())
 
+        // 使用shuffle函数对列表进行随机打乱
         idList.shuffle()
+        val stopWatch = StopWatch()
+        stopWatch.start("autoincrement query")
 
-        val startTime = Date().time
         idList.forEach {
-            val auto = benchmarksAutoMapper.selectById(it)
+            val auto = idTypeAutoMapper.selectById(it)
             log.info(auto.toString())
         }
-        val endTime = Date().time
 
-        log.info("auto_increment query cost ms = ${endTime - startTime}")
-        return "hello world"
+        stopWatch.stop()
+
+        log.info("auto_increment query \n ${stopWatch.prettyPrint()}")
+        return "increment id query"
     }
 
-    @GetMapping("/query/flow")
+    @GetMapping("/query/snowflake")
     fun queryFlow(): String {
         val start: KtQueryWrapper<SnowFlakeTable> = KtQueryWrapper(SnowFlakeTable::class.java)
             .apply(false, "limit 0,25000")
-        val startList = benchmarksFlowMapper.selectList(start)
+        val startList = idTypeFlowMapper.selectList(start)
         val end: KtQueryWrapper<SnowFlakeTable> = KtQueryWrapper(SnowFlakeTable::class.java)
             .apply(false, "limit 175000,25000")
-        val endList = benchmarksFlowMapper.selectList(end)
+        val endList = idTypeFlowMapper.selectList(end)
 
         startList.addAll(endList)
 
@@ -106,14 +105,15 @@ class BenchmarksController(
 
         idList.shuffle()
 
-        val startTime = Date().time
+        val stopWatch = StopWatch()
+        stopWatch.start("snowflake query")
         idList.forEach {
-            val auto = benchmarksFlowMapper.selectById(it)
+            val auto = idTypeFlowMapper.selectById(it)
             log.info(auto.toString())
         }
-        val endTime = Date().time
-
-        log.info("snowflake query cost ms = ${endTime - startTime}")
-        return "hello world"
+        stopWatch.stop()
+        log.info("snowflake query \n ${stopWatch.prettyPrint()}")
+        return "snowflake id query"
     }
+
 }
