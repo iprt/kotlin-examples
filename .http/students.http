@@ -1,15 +1,15 @@
 ### 获取所有包含父母信息的学生列表
-POST http://127.0.0.1:8080/curd-examples/student-with-parent/list-all
+POST {{root_uri}}/curd-examples/student-with-parent/list-all
 Accept: application/json
 Content-Type: application/json
 
 ### 获取指定id为1的包含父母信息的学生
-POST http://127.0.0.1:8080/curd-examples/student-with-parent/list-all-by-condition
+POST {{root_uri}}/curd-examples/student-with-parent/list-all-by-condition
 Accept: application/json
 Content-Type: application/json
 
 ### 分页获取所有包含父母信息的学生列表
-POST http://127.0.0.1:8080/curd-examples/student-with-parent/page-list
+POST {{root_uri}}/curd-examples/student-with-parent/page-list
 Accept: application/json
 Content-Type: application/json
 
@@ -19,7 +19,7 @@ Content-Type: application/json
 }
 
 ### 获取指定id为1的包含父母信息的学生
-POST http://127.0.0.1:8080/curd-examples/student-with-parent/get-by-id
+POST {{root_uri}}/curd-examples/student-with-parent/get-by-id
 Accept: application/json
 Content-Type: application/json
 
@@ -28,13 +28,13 @@ Content-Type: application/json
 }
 
 ### 获取所有包含经纬度的学生列表
-POST http://127.0.0.1:8080/curd-examples/student-with-address/list-all
+POST {{root_uri}}/curd-examples/student-with-address/list-all
 Accept: application/json
 Content-Type: application/json
 
 
 ### 分页获取所有包含经纬度的学生列表
-POST http://127.0.0.1:8080/curd-examples/student-with-address/page-list
+POST {{root_uri}}/curd-examples/student-with-address/page-list
 Accept: application/json
 Content-Type: application/json
 

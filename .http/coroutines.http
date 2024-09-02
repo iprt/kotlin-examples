@@ -1,2 +1,2 @@
 ### 测试协程
-GET http://127.0.0.1:8080/coroutines/sum
+GET {{root_uri}}/coroutines/sum
