@@ -1,0 +1,17 @@
+spring:
+  # mqtt config
+  mqtt:
+    publish:
+      broker: tcp://172.100.1.100:1883
+      username: username
+      password: password
+      clientId: kotlin-example-publish
+      defaultTopic: /topic/default
+    subscribe:
+      broker: tcp://172.100.1.100:1883
+      username: username
+      password: password
+      clientId: kotlin-example-subscribe
+      topics:
+        - /topic/default
+        - /hello/world

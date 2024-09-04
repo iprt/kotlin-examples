@@ -1,0 +1,14 @@
+spring:
+  data:
+    redis:
+      host: 172.100.1.100
+      port: 6379
+      password: root
+      database: 15
+      lettuce:
+        pool:
+          max-active: 8
+          # 连接分配应该阻塞的最大时间
+          max-wait: 5000
+          max-idle: 8
+          min-idle: 0

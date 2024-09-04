@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://172.100.1.100:3306/kotlin?characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false&allowMultiQueries=true&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.yaml
+
+mybatis-plus:
+  mapper-locations: classpath*:mapper/*Mapper.xml

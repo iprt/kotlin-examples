@@ -5,7 +5,7 @@ plugins {
     id("io.spring.dependency-management") version "1.1.6"
 }
 
-group = "io.intellij.examples"
+group = "io.intellij.examples.kotlin"
 version = "1.0.0-SNAPSHOT"
 
 java {
