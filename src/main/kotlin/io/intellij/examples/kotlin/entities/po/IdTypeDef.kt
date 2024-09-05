@@ -7,7 +7,7 @@ import com.baomidou.mybatisplus.annotation.TableName
 import java.util.*
 
 /**
- * Benchmarks
+ * IdTypeDef
  *
  * @author tech@intellij.io
  * @since 2021/7/19

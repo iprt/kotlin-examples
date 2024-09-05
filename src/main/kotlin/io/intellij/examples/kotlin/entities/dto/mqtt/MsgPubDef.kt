@@ -10,7 +10,7 @@ import jakarta.validation.constraints.NotNull
  * @author tech@intellij.io
  * @since 2021/12/28
  */
-data class MqttMsgDto(
+data class MqttPubReq(
     @field:NotBlank(message = "msg不能为空", groups = [A::class, B::class, C::class])
     var msg: String? = null,
 

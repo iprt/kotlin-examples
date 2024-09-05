@@ -3,7 +3,7 @@ package io.intellij.examples.kotlin.controller
 import io.intellij.examples.kotlin.entities.dto.mqtt.A
 import io.intellij.examples.kotlin.entities.dto.mqtt.B
 import io.intellij.examples.kotlin.entities.dto.mqtt.C
-import io.intellij.examples.kotlin.entities.dto.mqtt.MqttMsgDto
+import io.intellij.examples.kotlin.entities.dto.mqtt.MqttPubReq
 import io.intellij.examples.kotlin.mqtt.MqttConnectCondition
 import io.intellij.examples.kotlin.service.MqttService
 import org.springframework.context.annotation.Conditional
@@ -29,12 +29,12 @@ class MqttController(
     /**
      * Publish to default topic
      *
-     * @param dto
+     * @param req
      * @return
      */
     @PostMapping("/publishToDefaultTopic")
-    fun publishToDefaultTopic(@RequestBody @Validated(A::class) dto: MqttMsgDto): Boolean {
-        val msg = dto.msg!!
+    fun publishToDefaultTopic(@RequestBody @Validated(A::class) req: MqttPubReq): Boolean {
+        val msg = req.msg!!
         return mqttService.publishToDefaultTopic(msg)
     }
 
@@ -42,13 +42,13 @@ class MqttController(
     /**
      * Publish without qos
      *
-     * @param dto
+     * @param req
      * @return
      */
     @PostMapping("/publishWithoutQos")
-    fun publishWithoutQos(@RequestBody @Validated(B::class) dto: MqttMsgDto): Boolean {
-        val topic = dto.topic!!
-        val msg = dto.msg!!
+    fun publishWithoutQos(@RequestBody @Validated(B::class) req: MqttPubReq): Boolean {
+        val topic = req.topic!!
+        val msg = req.msg!!
         return mqttService.publish(topic, msg)
     }
 
@@ -56,14 +56,14 @@ class MqttController(
     /**
      * Publish with qos
      *
-     * @param dto
+     * @param req
      * @return
      */
     @PostMapping("/publishWithQos")
-    fun publishWithQos(@RequestBody @Validated(C::class) dto: MqttMsgDto): Boolean {
-        val topic = dto.topic!!
-        val qos = dto.qos!!
-        val msg = dto.msg!!
+    fun publishWithQos(@RequestBody @Validated(C::class) req: MqttPubReq): Boolean {
+        val topic = req.topic!!
+        val qos = req.qos!!
+        val msg = req.msg!!
         return mqttService.publish(topic, qos, msg)
     }
 
