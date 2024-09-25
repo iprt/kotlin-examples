@@ -44,7 +44,7 @@
                 ${log.path}/${log.name}-%d{yyyy-MM-dd}.%i.log
             </fileNamePattern>
             <maxHistory>180</maxHistory>
-            <maxFileSize>20MB</maxFileSize>
+            <maxFileSize>100MB</maxFileSize>
         </rollingPolicy>
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <level>INFO</level>
@@ -63,7 +63,7 @@
                 ${log.path}/${log.name}-error-%d{yyyy-MM-dd}.%i.log
             </fileNamePattern>
             <maxHistory>180</maxHistory>
-            <maxFileSize>20MB</maxFileSize>
+            <maxFileSize>100MB</maxFileSize>
         </rollingPolicy>
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <level>ERROR</level>
